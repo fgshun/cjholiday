@@ -39,96 +39,118 @@ typedef struct {
 } HolidayName;
 
 /* 元日 */
+static const Py_UCS2 _GANJITSU[] = {
+    0x5143, 0x65e5};
 static const HolidayName GANJITSU = {
-    (Py_UCS2[]){0x5143, 0x65e5},
-    2};
+    _GANJITSU, 2};
 /* 成人の日 */
+static const Py_UCS2 _SEIJINNOHI[] = {
+    0x6210, 0x4eba, 0x306e, 0x65e5};
 static const HolidayName SEIJINNOHI = {
-    (Py_UCS2[]){0x6210, 0x4eba, 0x306e, 0x65e5},
-    4};
+    _SEIJINNOHI, 4};
 /* 建国記念の日 */
+static const Py_UCS2 _KENKOKUKINENNOHI[] = {
+    0x5efa, 0x56fd, 0x8a18, 0x5ff5, 0x306e, 0x65e5};
 static const HolidayName KENKOKUKINENNOHI = {
-    (Py_UCS2[]){0x5efa, 0x56fd, 0x8a18, 0x5ff5, 0x306e, 0x65e5},
-    6};
+    _KENKOKUKINENNOHI, 6};
 /* 春分の日 */
+static const Py_UCS2 _SHUNBUNNOHI[] = {
+    0x6625, 0x5206, 0x306e, 0x65e5};
 static const HolidayName SHUNBUNNOHI = {
-    (Py_UCS2[]){0x6625, 0x5206, 0x306e, 0x65e5},
-    4};
+    _SHUNBUNNOHI, 4};
 /* 昭和の日 */
+static const Py_UCS2 _SHOWANOHI[] = {
+    0x662d, 0x548c, 0x306e, 0x65e5};
 static const HolidayName SHOWANOHI = {
-    (Py_UCS2[]){0x662d, 0x548c, 0x306e, 0x65e5},
-    4};
+    _SHOWANOHI, 4};
 /* 憲法記念日 */
+static const Py_UCS2 _KENPOKINENBI[] = {
+    0x61b2, 0x6cd5, 0x8a18, 0x5ff5, 0x65e5};
 static const HolidayName KENPOKINENBI = {
-    (Py_UCS2[]){0x61b2, 0x6cd5, 0x8a18, 0x5ff5, 0x65e5},
-    5};
+    _KENPOKINENBI, 5};
 /* みどりの日 */
+static const Py_UCS2 _MIDORINOHI[] = {
+    0x307f, 0x3069, 0x308a, 0x306e, 0x65e5};
 static const HolidayName MIDORINOHI = {
-    (Py_UCS2[]){0x307f, 0x3069, 0x308a, 0x306e, 0x65e5},
-    5};
+    _MIDORINOHI, 5};
 /* こどもの日 */
+static const Py_UCS2 _KODOMONOHI[] = {
+    0x3053, 0x3069, 0x3082, 0x306e, 0x65e5};
 static const HolidayName KODOMONOHI = {
-    (Py_UCS2[]){0x3053, 0x3069, 0x3082, 0x306e, 0x65e5},
-    5};
+    _KODOMONOHI, 5};
 /* 海の日 */
+static const Py_UCS2 _UMINOHI[] = {
+    0x6d77, 0x306e, 0x65e5};
 static const HolidayName UMINOHI = {
-    (Py_UCS2[]){0x6d77, 0x306e, 0x65e5},
-    3};
+    _UMINOHI, 3};
 /* 山の日 */
+static const Py_UCS2 _YAMANOHI[] = {
+    0x5c71, 0x306e, 0x65e5};
 static const HolidayName YAMANOHI = {
-    (Py_UCS2[]){0x5c71, 0x306e, 0x65e5},
-    3};
+    _YAMANOHI, 3};
 /* 敬老の日 */
+static const Py_UCS2 _KEIRONOHI[] = {
+    0x656c, 0x8001, 0x306e, 0x65e5};
 static const HolidayName KEIRONOHI = {
-    (Py_UCS2[]){0x656c, 0x8001, 0x306e, 0x65e5},
-    4};
+    _KEIRONOHI, 4};
 /* 秋分の日 */
+static const Py_UCS2 _SHUBUNNOHI[] = {
+    0x79cb, 0x5206, 0x306e, 0x65e5};
 static const HolidayName SHUBUNNOHI = {
-    (Py_UCS2[]){0x79cb, 0x5206, 0x306e, 0x65e5},
-    4};
+    _SHUBUNNOHI, 4};
 /* 体育の日 */
+static const Py_UCS2 _TAIKUNOHI[] = {
+    0x4f53, 0x80b2, 0x306e, 0x65e5};
 static const HolidayName TAIKUNOHI = {
-    (Py_UCS2[]){0x4f53, 0x80b2, 0x306e, 0x65e5},
-    4};
+    _TAIKUNOHI, 4};
 /* 文化の日 */
+static const Py_UCS2 _BUNKANOHI[] = {
+    0x6587, 0x5316, 0x306e, 0x65e5};
 static const HolidayName BUNKANOHI = {
-    (Py_UCS2[]){0x6587, 0x5316, 0x306e, 0x65e5},
-    4};
+    _BUNKANOHI, 4};
 /* 勤労感謝の日 */
+static const Py_UCS2 _KINROKANSHANOHI[] = {
+    0x52e4, 0x52b4, 0x611f, 0x8b1d, 0x306e, 0x65e5};
 static const HolidayName KINROKANSHANOHI = {
-    (Py_UCS2[]){0x52e4, 0x52b4, 0x611f, 0x8b1d, 0x306e, 0x65e5},
-    6};
+    _KINROKANSHANOHI, 6};
 /* 天皇誕生日 */
+static const Py_UCS2 _TENNOTANJOBI[] = {
+    0x5929, 0x7687, 0x8a95, 0x751f, 0x65e5};
 static const HolidayName TENNOTANJOBI = {
-    (Py_UCS2[]){0x5929, 0x7687, 0x8a95, 0x751f, 0x65e5},
-    5};
+    _TENNOTANJOBI, 5};
 /* 振替休日 */
+static const Py_UCS2 _FURIKAEKYUJITSU[] = {
+    0x632f, 0x66ff, 0x4f11, 0x65e5};
 static const HolidayName FURIKAEKYUJITSU = {
-    (Py_UCS2[]){0x632f, 0x66ff, 0x4f11, 0x65e5},
-    4};
+    _FURIKAEKYUJITSU, 4};
 /* 国民の休日 */
+static const Py_UCS2 _KOKUMINNOKYUJITSU[] = {
+    0x56fd, 0x6c11, 0x306e, 0x4f11, 0x65e5};
 static const HolidayName KOKUMINNOKYUJITSU = {
-    (Py_UCS2[]){0x56fd, 0x6c11, 0x306e, 0x4f11, 0x65e5},
-    5};
+    _KOKUMINNOKYUJITSU, 5};
 /* 皇太子明仁親王の結婚の儀 */
+static const Py_UCS2 _KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI[] = {
+    0x7687, 0x592a, 0x5b50, 0x660e, 0x4ec1, 0x89aa, 0x738b, 0x306e,
+    0x7d50, 0x5a5a, 0x306e, 0x5100};
 static const HolidayName KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI = {
-    (Py_UCS2[]){0x7687, 0x592a, 0x5b50, 0x660e, 0x4ec1, 0x89aa, 0x738b, 0x306e,
-                0x7d50, 0x5a5a, 0x306e, 0x5100},
-    12};
+    _KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI, 12};
 /* 昭和天皇の大喪の礼 */
+static const Py_UCS2 _SHOWATENNOUNOTAIMOUNOREI[] = {
+    0x662d, 0x548c, 0x5929, 0x7687, 0x306e, 0x5927, 0x55aa, 0x306e,
+    0x793c};
 static const HolidayName SHOWATENNOUNOTAIMOUNOREI = {
-    (Py_UCS2[]){0x662d, 0x548c, 0x5929, 0x7687, 0x306e, 0x5927, 0x55aa, 0x306e,
-                0x793c},
-    9};
+    _SHOWATENNOUNOTAIMOUNOREI, 9};
 /* 即位礼正殿の儀 */
+static const Py_UCS2 _SOKUIREISEIDENNOGI[] = {
+    0x5373, 0x4f4d, 0x793c, 0x6b63, 0x6bbf, 0x306e, 0x5100};
 static const HolidayName SOKUIREISEIDENNOGI = {
-    (Py_UCS2[]){0x5373, 0x4f4d, 0x793c, 0x6b63, 0x6bbf, 0x306e, 0x5100},
-    7};
+    _SOKUIREISEIDENNOGI, 7};
 /* 皇太子徳仁親王の結婚の儀 */
+static const Py_UCS2 _KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI[] = {
+    0x7687, 0x592a, 0x5b50, 0x5fb3, 0x4ec1, 0x89aa, 0x738b, 0x306e,
+    0x7d50, 0x5a5a, 0x306e, 0x5100};
 static const HolidayName KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = {
-    (Py_UCS2[]){0x7687, 0x592a, 0x5b50, 0x5fb3, 0x4ec1, 0x89aa, 0x738b, 0x306e,
-                0x7d50, 0x5a5a, 0x306e, 0x5100},
-    12};
+    _KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI, 12};
 
 
 
@@ -236,6 +258,7 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     long autumn;
     long weekday = -1;
     const HolidayName *name = NULL;
+    PyObject *result;
 
     if (!PyDate_Check(date)) { return NULL; }
 
@@ -431,7 +454,6 @@ CJHoliday_HolidayNameDate(PyObject *date) {
         Py_RETURN_NONE;
     }
 
-    PyObject *result;
     result = PyUnicode_FromKindAndData(PyUnicode_2BYTE_KIND, name->name, name->length);
     PyUnicode_InternInPlace(&result);
     return result;
