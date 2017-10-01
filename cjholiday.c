@@ -7,16 +7,17 @@
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 //_/
 //_/  CopyRight(C) K.Tsunoda(AddinBox) 2001 All Rights Reserved.
-//_/  ( http://www.h3.dion.ne.jp/~sakatsu/index.htm )
+//_/  ( AddinBox  http://addinbox.sakura.ne.jp/index.htm )
+//_/  (  旧サイト  http://www.h3.dion.ne.jp/~sakatsu/index.htm )
 //_/
 //_/    この祝日判定コードは『Excel:kt関数アドイン』で使用しているものです。
 //_/    この関数では、２０１６年施行の改正祝日法(山の日)までを
-//_/  　サポートしています。
+//_/    サポートしています。
 //_/
 //_/  (*1)このコードを引用するに当たっては、必ずこのコメントも
 //_/      一緒に引用する事とします。
 //_/  (*2)他サイト上で本マクロを直接引用する事は、ご遠慮願います。
-//_/      【 http://www.h3.dion.ne.jp/~sakatsu/holiday_logic.htm 】
+//_/      【 http://addinbox.sakura.ne.jp/holiday_logic.htm 】
 //_/      へのリンクによる紹介で対応して下さい。
 //_/  (*3)[ktHolidayName]という関数名そのものは、各自の環境に
 //_/      おける命名規則に沿って変更しても構いません。
@@ -28,8 +29,8 @@
  * fgshun  http://d.hatena.ne.jp/fgshun/
  *
  * このコードは
- * SETOGUCHI Mitsuhiro (http://matatabi.homeip.net/) 氏のスクリプト
- * (http://www.h3.dion.ne.jp/~sakatsu/holiday_logic5.htm#Python)
+ * SETOGUCHI Mitsuhiro (https://straitmouth.jp/blog/setomits/) 氏のスクリプト
+ * (http://addinbox.sakura.ne.jp/holiday_logic5.htm#Python)
  * を fgshun が C エクステンションとして組みなおしたものです。
  */
 
@@ -461,7 +462,7 @@ CJHoliday_HolidayNameDate(PyObject *date) {
 
 static PyObject *
 holiday_name_date(PyObject *self, PyObject *args, PyObject *kwargs) {
-    /* 非推奨。 date の祝日判定 */
+    /* 非推奨。 holiday_name が date も受け付けるようになったため */
     PyObject *date;
     static char *kwlist[] = {"date", NULL};
 
