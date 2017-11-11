@@ -27,18 +27,5 @@ class HolidayNameTestCase(unittest.TestCase):
                     j(date.year, date.month, date.day),
                     c(year=date.year, month=date.month, day=date.day))
 
-    def test_holiday_name_date(self):
-        j = jholiday.holiday_name
-        c1 = cjholiday.holiday_name_date
-        c2 = cjholiday.holiday_name
-
-        for date in range_date(self.start, self.end):
-            self.assertEqual(
-                    j(date.year, date.month, date.day),
-                    c1(date))
-            self.assertEqual(
-                    j(date.year, date.month, date.day),
-                    c2(date=date))
-
 if __name__ == '__main__':
     unittest.main()

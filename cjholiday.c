@@ -35,146 +35,116 @@
  */
 
 typedef struct {
-    const Py_UCS2 *name;
-    const Py_ssize_t length;
-} HolidayName;
-
-/* 元日 */
-static const Py_UCS2 _GANJITSU[] = {
-    0x5143, 0x65e5};
-static const HolidayName GANJITSU = {
-    _GANJITSU, 2};
-/* 成人の日 */
-static const Py_UCS2 _SEIJINNOHI[] = {
-    0x6210, 0x4eba, 0x306e, 0x65e5};
-static const HolidayName SEIJINNOHI = {
-    _SEIJINNOHI, 4};
-/* 建国記念の日 */
-static const Py_UCS2 _KENKOKUKINENNOHI[] = {
-    0x5efa, 0x56fd, 0x8a18, 0x5ff5, 0x306e, 0x65e5};
-static const HolidayName KENKOKUKINENNOHI = {
-    _KENKOKUKINENNOHI, 6};
-/* 春分の日 */
-static const Py_UCS2 _SHUNBUNNOHI[] = {
-    0x6625, 0x5206, 0x306e, 0x65e5};
-static const HolidayName SHUNBUNNOHI = {
-    _SHUNBUNNOHI, 4};
-/* 昭和の日 */
-static const Py_UCS2 _SHOWANOHI[] = {
-    0x662d, 0x548c, 0x306e, 0x65e5};
-static const HolidayName SHOWANOHI = {
-    _SHOWANOHI, 4};
-/* 憲法記念日 */
-static const Py_UCS2 _KENPOKINENBI[] = {
-    0x61b2, 0x6cd5, 0x8a18, 0x5ff5, 0x65e5};
-static const HolidayName KENPOKINENBI = {
-    _KENPOKINENBI, 5};
-/* みどりの日 */
-static const Py_UCS2 _MIDORINOHI[] = {
-    0x307f, 0x3069, 0x308a, 0x306e, 0x65e5};
-static const HolidayName MIDORINOHI = {
-    _MIDORINOHI, 5};
-/* こどもの日 */
-static const Py_UCS2 _KODOMONOHI[] = {
-    0x3053, 0x3069, 0x3082, 0x306e, 0x65e5};
-static const HolidayName KODOMONOHI = {
-    _KODOMONOHI, 5};
-/* 海の日 */
-static const Py_UCS2 _UMINOHI[] = {
-    0x6d77, 0x306e, 0x65e5};
-static const HolidayName UMINOHI = {
-    _UMINOHI, 3};
-/* 山の日 */
-static const Py_UCS2 _YAMANOHI[] = {
-    0x5c71, 0x306e, 0x65e5};
-static const HolidayName YAMANOHI = {
-    _YAMANOHI, 3};
-/* 敬老の日 */
-static const Py_UCS2 _KEIRONOHI[] = {
-    0x656c, 0x8001, 0x306e, 0x65e5};
-static const HolidayName KEIRONOHI = {
-    _KEIRONOHI, 4};
-/* 秋分の日 */
-static const Py_UCS2 _SHUBUNNOHI[] = {
-    0x79cb, 0x5206, 0x306e, 0x65e5};
-static const HolidayName SHUBUNNOHI = {
-    _SHUBUNNOHI, 4};
-/* 体育の日 */
-static const Py_UCS2 _TAIKUNOHI[] = {
-    0x4f53, 0x80b2, 0x306e, 0x65e5};
-static const HolidayName TAIKUNOHI = {
-    _TAIKUNOHI, 4};
-/* 文化の日 */
-static const Py_UCS2 _BUNKANOHI[] = {
-    0x6587, 0x5316, 0x306e, 0x65e5};
-static const HolidayName BUNKANOHI = {
-    _BUNKANOHI, 4};
-/* 勤労感謝の日 */
-static const Py_UCS2 _KINROKANSHANOHI[] = {
-    0x52e4, 0x52b4, 0x611f, 0x8b1d, 0x306e, 0x65e5};
-static const HolidayName KINROKANSHANOHI = {
-    _KINROKANSHANOHI, 6};
-/* 天皇誕生日 */
-static const Py_UCS2 _TENNOTANJOBI[] = {
-    0x5929, 0x7687, 0x8a95, 0x751f, 0x65e5};
-static const HolidayName TENNOTANJOBI = {
-    _TENNOTANJOBI, 5};
-/* 振替休日 */
-static const Py_UCS2 _FURIKAEKYUJITSU[] = {
-    0x632f, 0x66ff, 0x4f11, 0x65e5};
-static const HolidayName FURIKAEKYUJITSU = {
-    _FURIKAEKYUJITSU, 4};
-/* 国民の休日 */
-static const Py_UCS2 _KOKUMINNOKYUJITSU[] = {
-    0x56fd, 0x6c11, 0x306e, 0x4f11, 0x65e5};
-static const HolidayName KOKUMINNOKYUJITSU = {
-    _KOKUMINNOKYUJITSU, 5};
-/* 皇太子明仁親王の結婚の儀 */
-static const Py_UCS2 _KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI[] = {
-    0x7687, 0x592a, 0x5b50, 0x660e, 0x4ec1, 0x89aa, 0x738b, 0x306e,
-    0x7d50, 0x5a5a, 0x306e, 0x5100};
-static const HolidayName KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI = {
-    _KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI, 12};
-/* 昭和天皇の大喪の礼 */
-static const Py_UCS2 _SHOWATENNOUNOTAIMOUNOREI[] = {
-    0x662d, 0x548c, 0x5929, 0x7687, 0x306e, 0x5927, 0x55aa, 0x306e,
-    0x793c};
-static const HolidayName SHOWATENNOUNOTAIMOUNOREI = {
-    _SHOWATENNOUNOTAIMOUNOREI, 9};
-/* 即位礼正殿の儀 */
-static const Py_UCS2 _SOKUIREISEIDENNOGI[] = {
-    0x5373, 0x4f4d, 0x793c, 0x6b63, 0x6bbf, 0x306e, 0x5100};
-static const HolidayName SOKUIREISEIDENNOGI = {
-    _SOKUIREISEIDENNOGI, 7};
-/* 皇太子徳仁親王の結婚の儀 */
-static const Py_UCS2 _KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI[] = {
-    0x7687, 0x592a, 0x5b50, 0x5fb3, 0x4ec1, 0x89aa, 0x738b, 0x306e,
-    0x7d50, 0x5a5a, 0x306e, 0x5100};
-static const HolidayName KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = {
-    _KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI, 12};
-
-
-
-typedef struct {
+    PyObject *DateClass;
     PyObject *Delta_Day1;
+    /* 元日 */
+    PyObject *GANJITSU;
+    /* 成人の日 */
+    PyObject *SEIJINNOHI;
+    /* 建国記念の日 */
+    PyObject *KENKOKUKINENNOHI;
+    /* 春分の日 */
+    PyObject *SHUNBUNNOHI;
+    /* 昭和の日 */
+    PyObject *SHOWANOHI;
+    /* 憲法記念日 */
+    PyObject *KENPOKINENBI;
+    /* みどりの日 */
+    PyObject *MIDORINOHI;
+    /* こどもの日 */
+    PyObject *KODOMONOHI;
+    /* 海の日 */
+    PyObject *UMINOHI;
+    /* 山の日 */
+    PyObject *YAMANOHI;
+    /* 敬老の日 */
+    PyObject *KEIRONOHI;
+    /* 秋分の日 */
+    PyObject *SHUBUNNOHI;
+    /* 体育の日 */
+    PyObject *TAIKUNOHI;
+    /* 文化の日 */
+    PyObject *BUNKANOHI;
+    /* 勤労感謝の日 */
+    PyObject *KINROKANSHANOHI;
+    /* 天皇誕生日 */
+    PyObject *TENNOTANJOBI;
+    /* 振替休日 */
+    PyObject *FURIKAEKYUJITSU;
+    /* 国民の休日 */
+    PyObject *KOKUMINNOKYUJITSU;
+    /* 皇太子明仁親王の結婚の儀 */
+    PyObject *KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI;
+    /* 昭和天皇の大喪の礼 */
+    PyObject *SHOWATENNOUNOTAIMOUNOREI;
+    /* 即位礼正殿の儀 */
+    PyObject *SOKUIREISEIDENNOGI;
+    /* 皇太子徳仁親王の結婚の儀 */
+    PyObject *KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
 } cjholidayState;
+
 
 #define cjholidaystate(o) ((cjholidayState*)PyModule_GetState(o))
 
 static int cjholiday_traverse(PyObject *m, visitproc visit, void *arg) {
+    Py_VISIT(cjholidaystate(m)->DateClass);
     Py_VISIT(cjholidaystate(m)->Delta_Day1);
+    Py_VISIT(cjholidaystate(m)->GANJITSU);
+    Py_VISIT(cjholidaystate(m)->SEIJINNOHI);
+    Py_VISIT(cjholidaystate(m)->KENKOKUKINENNOHI);
+    Py_VISIT(cjholidaystate(m)->SHUNBUNNOHI);
+    Py_VISIT(cjholidaystate(m)->SHOWANOHI);
+    Py_VISIT(cjholidaystate(m)->KENPOKINENBI);
+    Py_VISIT(cjholidaystate(m)->MIDORINOHI);
+    Py_VISIT(cjholidaystate(m)->KODOMONOHI);
+    Py_VISIT(cjholidaystate(m)->UMINOHI);
+    Py_VISIT(cjholidaystate(m)->YAMANOHI);
+    Py_VISIT(cjholidaystate(m)->KEIRONOHI);
+    Py_VISIT(cjholidaystate(m)->SHUBUNNOHI);
+    Py_VISIT(cjholidaystate(m)->TAIKUNOHI);
+    Py_VISIT(cjholidaystate(m)->BUNKANOHI);
+    Py_VISIT(cjholidaystate(m)->KINROKANSHANOHI);
+    Py_VISIT(cjholidaystate(m)->TENNOTANJOBI);
+    Py_VISIT(cjholidaystate(m)->FURIKAEKYUJITSU);
+    Py_VISIT(cjholidaystate(m)->KOKUMINNOKYUJITSU);
+    Py_VISIT(cjholidaystate(m)->KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI);
+    Py_VISIT(cjholidaystate(m)->SHOWATENNOUNOTAIMOUNOREI);
+    Py_VISIT(cjholidaystate(m)->SOKUIREISEIDENNOGI);
+    Py_VISIT(cjholidaystate(m)->KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI);
     return 0;
 }
 
 static int cjholiday_clear(PyObject *m) {
+    Py_CLEAR(cjholidaystate(m)->DateClass);
     Py_CLEAR(cjholidaystate(m)->Delta_Day1);
+    Py_CLEAR(cjholidaystate(m)->GANJITSU);
+    Py_CLEAR(cjholidaystate(m)->SEIJINNOHI);
+    Py_CLEAR(cjholidaystate(m)->KENKOKUKINENNOHI);
+    Py_CLEAR(cjholidaystate(m)->SHUNBUNNOHI);
+    Py_CLEAR(cjholidaystate(m)->SHOWANOHI);
+    Py_CLEAR(cjholidaystate(m)->KENPOKINENBI);
+    Py_CLEAR(cjholidaystate(m)->MIDORINOHI);
+    Py_CLEAR(cjholidaystate(m)->KODOMONOHI);
+    Py_CLEAR(cjholidaystate(m)->UMINOHI);
+    Py_CLEAR(cjholidaystate(m)->YAMANOHI);
+    Py_CLEAR(cjholidaystate(m)->KEIRONOHI);
+    Py_CLEAR(cjholidaystate(m)->SHUBUNNOHI);
+    Py_CLEAR(cjholidaystate(m)->TAIKUNOHI);
+    Py_CLEAR(cjholidaystate(m)->BUNKANOHI);
+    Py_CLEAR(cjholidaystate(m)->KINROKANSHANOHI);
+    Py_CLEAR(cjholidaystate(m)->TENNOTANJOBI);
+    Py_CLEAR(cjholidaystate(m)->FURIKAEKYUJITSU);
+    Py_CLEAR(cjholidaystate(m)->KOKUMINNOKYUJITSU);
+    Py_CLEAR(cjholidaystate(m)->KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI);
+    Py_CLEAR(cjholidaystate(m)->SHOWATENNOUNOTAIMOUNOREI);
+    Py_CLEAR(cjholidaystate(m)->SOKUIREISEIDENNOGI);
+    Py_CLEAR(cjholidaystate(m)->KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI);
     return 0;
 }
 
 static struct PyModuleDef cjholiday_module;
 
-#define cjholidaystate_gloval ((cjholidayState*)PyModule_GetState(PyState_FindModule(&cjholiday_module)))
-
+#define cjholidaystate_global ((cjholidayState*)PyModule_GetState(PyState_FindModule(&cjholiday_module)))
 
 
 static long get_weekday(PyObject *date) {
@@ -252,14 +222,13 @@ CJHoliday_HolidayName(long year, long month, long day) {
 
 static PyObject *
 CJHoliday_HolidayNameDate(PyObject *date) {
-    /* date の祝日名を返す。祝日ではないときは None を返す。
+    /* 祝日名を返す。祝日ではないときは None を返す。
        失敗時、例外を設定し NULL を返す。
      */
     long year, month, day;
     long autumn;
     long weekday = -1;
-    const HolidayName *name = NULL;
-    PyObject *result;
+    PyObject *name = Py_None;
 
     if (!PyDate_Check(date)) { return NULL; }
 
@@ -282,74 +251,74 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     switch (month) {
         case 1:
             if (day == 1) {
-                name = &GANJITSU;
+                name = cjholidaystate_global->GANJITSU;
             }
             else if (year >= 2000) {
                 if ((day - 1) / 7 == 1) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 0) {
-                        name = &SEIJINNOHI;
+                        name = cjholidaystate_global->SEIJINNOHI;
                     }
                 }
             }
             else if (day == 15) {
-                name = &SEIJINNOHI;
+                name = cjholidaystate_global->SEIJINNOHI;
             }
             break;
         case 2:
             if (day == 11 && year >= 1967) {
-                name = &KENKOKUKINENNOHI;
+                name = cjholidaystate_global->KENKOKUKINENNOHI;
             }
             else if (year == 1989 && day == 24) {
                 /* 1989/2/24 */
-                name = &SHOWATENNOUNOTAIMOUNOREI;
+                name = cjholidaystate_global->SHOWATENNOUNOTAIMOUNOREI;
             }
             break;
         case 3:
             if (day == vernal_equinox(year)) {
-                name = &SHUNBUNNOHI;
+                name = cjholidaystate_global->SHUNBUNNOHI;
             }
             break;
         case 4:
             if (day == 29) {
                 if (year >= 2007) {
-                    name = &SHOWANOHI;
+                    name = cjholidaystate_global->SHOWANOHI;
                 }
                 else if (year >= 1989) {
-                    name = &MIDORINOHI;
+                    name = cjholidaystate_global->MIDORINOHI;
                 }
                 else {
-                    name = &TENNOTANJOBI;
+                    name = cjholidaystate_global->TENNOTANJOBI;
                 }
             }
             else if (year == 1959 && day == 10) {
                 /* 1959/4/10 */
-                name = &KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI;
+                name = cjholidaystate_global->KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI;
             }
             break;
         case 5:
             if (day == 3) {
-                name = &KENPOKINENBI;
+                name = cjholidaystate_global->KENPOKINENBI;
             }
             else if (day == 4) {
                 if (year >= 2007) {
-                    name = &MIDORINOHI;
+                    name = cjholidaystate_global->MIDORINOHI;
                 }
                 else if (year >= 1986) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday != 0) {
-                        name = &KOKUMINNOKYUJITSU;
+                        name = cjholidaystate_global->KOKUMINNOKYUJITSU;
                     }
                 }
             }
             else if (day == 5) {
-                name = &KODOMONOHI;
+                name = cjholidaystate_global->KODOMONOHI;
             }
             else if (day == 6) {
                 if (year >= 2007) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 1 || weekday == 2) {
-                        name = &FURIKAEKYUJITSU;
+                        name = cjholidaystate_global->FURIKAEKYUJITSU;
                     }
                 }
             }
@@ -357,7 +326,7 @@ CJHoliday_HolidayNameDate(PyObject *date) {
         case 6:
             if (year == 1993 && day == 9) {
                 /* 1993/6/9 */
-                name = &KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
+                name = cjholidaystate_global->KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
             }
             break;
         case 7:
@@ -365,36 +334,36 @@ CJHoliday_HolidayNameDate(PyObject *date) {
                 if ((day - 1) / 7 == 2) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 0) {
-                        name = &UMINOHI;
+                        name = cjholidaystate_global->UMINOHI;
                     }
                 }
             }
             else if (year >= 1996 && day == 20) {
-                name = &UMINOHI;
+                name = cjholidaystate_global->UMINOHI;
             }
             break;
         case 8:
             if (year >= 2016 && day == 11) {
-                name = &YAMANOHI;
+                name = cjholidaystate_global->YAMANOHI;
             }
             break;
         case 9:
             autumn = autumn_equinox(year);
             if (day == autumn) {
-                name = &SHUBUNNOHI;
+                name = cjholidaystate_global->SHUBUNNOHI;
             }
             else {
                 if (year >= 2003) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if ((day - 1) / 7 == 2 && weekday == 0) {
-                        name = &KEIRONOHI;
+                        name = cjholidaystate_global->KEIRONOHI;
                     }
                     else if (weekday == 1 && day == autumn - 1) {
-                        name = &KOKUMINNOKYUJITSU;
+                        name = cjholidaystate_global->KOKUMINNOKYUJITSU;
                     }
                 }
                 else if (year >= 1966 && day == 15) {
-                    name = &KEIRONOHI;
+                    name = cjholidaystate_global->KEIRONOHI;
                 }
             }
             break;
@@ -403,43 +372,43 @@ CJHoliday_HolidayNameDate(PyObject *date) {
                 if ((day - 1) / 7 == 1) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 0) {
-                        name = &TAIKUNOHI;
+                        name = cjholidaystate_global->TAIKUNOHI;
                     }
                 }
             }
             else if (year >= 1966 && day == 10) {
-                name = &TAIKUNOHI;
+                name = cjholidaystate_global->TAIKUNOHI;
             }
             break;
         case 11:
             if (day == 3) {
-                name = &BUNKANOHI;
+                name = cjholidaystate_global->BUNKANOHI;
             }
             else if (day == 23) {
-                name = &KINROKANSHANOHI;
+                name = cjholidaystate_global->KINROKANSHANOHI;
             }
             else if (year == 1990 && day == 12) {
-                name = &SOKUIREISEIDENNOGI;
+                name = cjholidaystate_global->SOKUIREISEIDENNOGI;
             }
             break;
         case 12:
             if (day == 23 && year >= 1989) {
-                name = &TENNOTANJOBI;
+                name = cjholidaystate_global->TENNOTANJOBI;
             }
     }
 
-    if (name == NULL) {
+    if (name == Py_None) {
         if (weekday == -1) {
             if ((weekday = get_weekday(date)) == -1) { return NULL; }
         }
         if (weekday == 0) {
-            PyObject *prev, *prev_name;
+            PyObject *prev_date, *prev_name;
 
-            prev = PyNumber_Subtract(date, cjholidaystate_gloval->Delta_Day1);
-            if (prev == NULL) { return NULL; }
+            prev_date = PyNumber_Subtract(date, cjholidaystate_global->Delta_Day1);
+            if (prev_date == NULL) { return NULL; }
 
-            prev_name = CJHoliday_HolidayNameDate(prev);
-            Py_DECREF(prev);
+            prev_name = CJHoliday_HolidayNameDate(prev_date);
+            Py_DECREF(prev_date);
             if (prev_name == NULL) { return NULL; }
 
             if (prev_name == Py_None) {
@@ -447,30 +416,12 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             }
             Py_DECREF(prev_name);
 
-            name = &FURIKAEKYUJITSU;
+            name = cjholidaystate_global->FURIKAEKYUJITSU;
         }
     }
 
-    if (name == NULL) {
-        Py_RETURN_NONE;
-    }
-
-    result = PyUnicode_FromKindAndData(PyUnicode_2BYTE_KIND, name->name, name->length);
-    PyUnicode_InternInPlace(&result);
-    return result;
-}
-
-static PyObject *
-holiday_name_date(PyObject *self, PyObject *args, PyObject *kwargs) {
-    /* 非推奨。 holiday_name が date も受け付けるようになったため */
-    PyObject *date;
-    static char *kwlist[] = {"date", NULL};
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O", kwlist, &date)) {
-        return NULL;
-    }
-
-    return CJHoliday_HolidayNameDate(date);
+    Py_INCREF(name);
+    return name;
 }
 
 static PyObject *
@@ -500,9 +451,6 @@ holiday_name(PyObject *self, PyObject *args, PyObject *kwargs) {
 }
 
 static PyMethodDef cjholiday_method[] = {
-    {"holiday_name_date", (PyCFunction)holiday_name_date,
-     METH_VARARGS | METH_KEYWORDS,
-     "deplicated. get name of holiday from datetime.date."},
     {"holiday_name", (PyCFunction)holiday_name,
      METH_VARARGS | METH_KEYWORDS,
      "get name of holiday from ymd or datetime.date."},
@@ -511,14 +459,14 @@ static PyMethodDef cjholiday_method[] = {
 
 static struct PyModuleDef cjholiday_module = {
     PyModuleDef_HEAD_INIT,
-    "cjholiday",   /* name of module */
-    NULL, /* module documentation, may be NULL */
-    sizeof(cjholidayState), /* size of per-interpreter state of the module */
+    "cjholiday",
+    NULL,
+    sizeof(cjholidayState),
     cjholiday_method,
-    NULL, /* m_reload, currently unused */
+    NULL,
     cjholiday_traverse,
     cjholiday_clear,
-    NULL /* m_free, A function to call during deallocation of the module object */
+    NULL
 };
 
 PyMODINIT_FUNC PyInit_cjholiday(void) {
@@ -530,7 +478,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (module == NULL) { goto fail; }
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.0.4")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.1")) { goto fail; }
 
     /* Initialize the C API pointer array */
     CJHoliday_API[CJHoliday_HolidayName_NUM] = (void *)CJHoliday_HolidayName;
@@ -549,6 +497,29 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     /* datetime.timedelta(days=1) */
     if ((cjholidaystate(module)->Delta_Day1 = PyDelta_FromDSU(1, 0, 0)) == NULL) { goto fail; }
 
+    /* 祝日名 */
+    if ((cjholidaystate(module)->GANJITSU = PyUnicode_FromString("元日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SEIJINNOHI = PyUnicode_FromString("成人の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KENKOKUKINENNOHI = PyUnicode_FromString("建国記念の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SHUNBUNNOHI = PyUnicode_FromString("春分の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SHOWANOHI = PyUnicode_FromString("昭和の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KENPOKINENBI = PyUnicode_FromString("憲法記念日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->MIDORINOHI = PyUnicode_FromString("みどりの日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KODOMONOHI = PyUnicode_FromString("こどもの日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->UMINOHI = PyUnicode_FromString("海の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->YAMANOHI = PyUnicode_FromString("山の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KEIRONOHI = PyUnicode_FromString("敬老の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SHUBUNNOHI = PyUnicode_FromString("秋分の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->TAIKUNOHI = PyUnicode_FromString("体育の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->BUNKANOHI = PyUnicode_FromString("文化の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KINROKANSHANOHI = PyUnicode_FromString("勤労感謝の日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->TENNOTANJOBI = PyUnicode_FromString("天皇誕生日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->FURIKAEKYUJITSU = PyUnicode_FromString("振替休日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KOKUMINNOKYUJITSU = PyUnicode_FromString("国民の休日")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI = PyUnicode_FromString("皇太子明仁親王の結婚の儀")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SHOWATENNOUNOTAIMOUNOREI = PyUnicode_FromString("昭和天皇の大喪の礼")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->SOKUIREISEIDENNOGI = PyUnicode_FromString("即位礼正殿の儀")) == NULL) { goto fail; }
+    if ((cjholidaystate(module)->KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = PyUnicode_FromString("皇太子徳仁親王の結婚の儀")) == NULL) { goto fail; }
     return module;
 
 fail:
