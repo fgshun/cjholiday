@@ -35,7 +35,6 @@
  */
 
 typedef struct {
-    PyObject *DateClass;
     PyObject *Delta_Day1;
     /* 元日 */
     PyObject *GANJITSU;
@@ -83,11 +82,11 @@ typedef struct {
     PyObject *KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
 } cjholidayState;
 
-
+static struct PyModuleDef cjholiday_module;
 #define cjholidaystate(o) ((cjholidayState*)PyModule_GetState(o))
+#define cjholidaystate_global ((cjholidayState*)PyModule_GetState(PyState_FindModule(&cjholiday_module)))
 
 static int cjholiday_traverse(PyObject *m, visitproc visit, void *arg) {
-    Py_VISIT(cjholidaystate(m)->DateClass);
     Py_VISIT(cjholidaystate(m)->Delta_Day1);
     Py_VISIT(cjholidaystate(m)->GANJITSU);
     Py_VISIT(cjholidaystate(m)->SEIJINNOHI);
@@ -115,7 +114,6 @@ static int cjholiday_traverse(PyObject *m, visitproc visit, void *arg) {
 }
 
 static int cjholiday_clear(PyObject *m) {
-    Py_CLEAR(cjholidaystate(m)->DateClass);
     Py_CLEAR(cjholidaystate(m)->Delta_Day1);
     Py_CLEAR(cjholidaystate(m)->GANJITSU);
     Py_CLEAR(cjholidaystate(m)->SEIJINNOHI);
@@ -141,11 +139,6 @@ static int cjholiday_clear(PyObject *m) {
     Py_CLEAR(cjholidaystate(m)->KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI);
     return 0;
 }
-
-static struct PyModuleDef cjholiday_module;
-
-#define cjholidaystate_global ((cjholidayState*)PyModule_GetState(PyState_FindModule(&cjholiday_module)))
-
 
 static long get_weekday(PyObject *date) {
     /* date.weekday()
@@ -478,7 +471,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (module == NULL) { goto fail; }
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.1")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.1.1")) { goto fail; }
 
     /* Initialize the C API pointer array */
     CJHoliday_API[CJHoliday_HolidayName_NUM] = (void *)CJHoliday_HolidayName;
