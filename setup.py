@@ -10,4 +10,5 @@ setup(
         author_email='fgshun@gmail.com',
         url='http://www.lazy-moon.jp/',
         py_modules=py_modules,
+        headers=['cjholiday.h'],
         ext_modules=extensions)
