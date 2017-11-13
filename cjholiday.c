@@ -205,7 +205,7 @@ CJHoliday_HolidayName(long year, long month, long day) {
     PyObject *date;
     PyObject *result;
 
-    date =  PyDateTime_FromDateAndTime(year, month, day, 0, 0, 0, 0);
+    date =  PyDate_FromDate(year, month, day);
     if (date == NULL) { return NULL; }
 
     result = CJHoliday_HolidayNameDate(date);
@@ -471,7 +471,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (module == NULL) { goto fail; }
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.1.1")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.1.2a0")) { goto fail; }
 
     /* Initialize the C API pointer array */
     CJHoliday_API[CJHoliday_HolidayName_NUM] = (void *)CJHoliday_HolidayName;
