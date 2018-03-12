@@ -11,7 +11,8 @@
 //_/  (  旧サイト  http://www.h3.dion.ne.jp/~sakatsu/index.htm )
 //_/
 //_/    この祝日判定コードは『Excel:kt関数アドイン』で使用しているものです。
-//_/    この関数では、２０１６年施行の改正祝日法(山の日)までを
+//_/
+//_/    この関数では、２０１９年施行の「天皇誕生日の変更」までを
 //_/    サポートしています。
 //_/
 //_/  (*1)このコードを引用するに当たっては、必ずこのコメントも
@@ -262,6 +263,9 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             if (day == 11 && year >= 1967) {
                 name = cjholidaystate_global->KENKOKUKINENNOHI;
             }
+            else if (day == 23 && year >= 2020) {
+                name = cjholidaystate_global->TENNOTANJOBI;
+            }
             else if (year == 1989 && day == 24) {
                 /* 1989/2/24 */
                 name = cjholidaystate_global->SHOWATENNOUNOTAIMOUNOREI;
@@ -281,6 +285,7 @@ CJHoliday_HolidayNameDate(PyObject *date) {
                     name = cjholidaystate_global->MIDORINOHI;
                 }
                 else {
+                    /* 昭和天皇 */
                     name = cjholidaystate_global->TENNOTANJOBI;
                 }
             }
@@ -385,7 +390,8 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             }
             break;
         case 12:
-            if (day == 23 && year >= 1989) {
+            if (day == 23 && year >= 1989 && year <= 2018) {
+                /* 平成天皇 */
                 name = cjholidaystate_global->TENNOTANJOBI;
             }
     }
