@@ -468,7 +468,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
 
 fail:
     Py_XDECREF(module);
-    Py_XDECREF(c_api_object);
+    Py_CLEAR(c_api_object);
     Py_CLEAR(Delta_Day1);
     Py_CLEAR(GANJITSU);
     Py_CLEAR(SEIJINNOHI);
