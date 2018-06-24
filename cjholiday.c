@@ -10,10 +10,19 @@
 //_/  ( AddinBox  http://addinbox.sakura.ne.jp/index.htm )
 //_/  (  旧サイト  http://www.h3.dion.ne.jp/~sakatsu/index.htm )
 //_/
-//_/    この祝日判定コードは『Excel:kt関数アドイン』で使用しているものです。
+//_/  この祝日判定コードは『Excel:kt関数アドイン』で使用しているものです。
+//_/  このロジックは、レスポンスを第一義として、可能な限り少ない
+//_/  【条件判定の実行】で結果を出せるように設計してあります。
 //_/
-//_/    この関数では、２０１９年施行の「天皇誕生日の変更」までを
-//_/    サポートしています。
+//_/  この関数では以下の祝日変更までサポートしています。
+//_/  ・２０１９年施行の「天皇誕生日の変更」 12/23⇒2/23 (補：2019年には[天皇誕生日]はありません)
+//_/  ・２０２０年施行の「体育の日の改名」⇒スポーツの日
+//_/  ・五輪特措法による２０２０年の「祝日移動」
+//_/     海の日：7/20(3rd Mon)⇒7/23, スポーツの日:10/12(2nd Mon)⇒7/24, 山の日：8/11⇒8/10
+//_/
+//_/  下記２つについては未だ法整備自体が行なわれていませんので未対応です。
+//_/  ・２０１９年の退位日(4/30)/即位日(5/1)
+//_/  ・２０１９年の「即位の礼　正殿の儀 (10/22) 」
 //_/
 //_/  (*1)このコードを引用するに当たっては、必ずこのコメントも
 //_/      一緒に引用する事とします。
@@ -63,6 +72,8 @@ static PyObject *KEIRONOHI;
 static PyObject *SHUBUNNOHI;
 /* 体育の日 */
 static PyObject *TAIKUNOHI;
+/* スポーツの日 */
+static PyObject *SUPOTSUNOHI;
 /* 文化の日 */
 static PyObject *BUNKANOHI;
 /* 勤労感謝の日 */
@@ -272,7 +283,23 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             }
             break;
         case 7:
-            if (year >= 2003) {
+            if (year >= 2021) {
+                if ((day - 1) / 7 == 2) {
+                    if ((weekday = get_weekday(date)) == -1) { return NULL; }
+                    if (weekday == 0) {
+                        name = UMINOHI;
+                    }
+                }
+            }
+            else if (year == 2020) {
+                if (day == 23) {
+                    name = UMINOHI;
+                }
+                else if (day == 24) {
+                    name = SUPOTSUNOHI;
+                }
+            }
+            else if (year >= 2003) {
                 if ((day - 1) / 7 == 2) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 0) {
@@ -285,7 +312,15 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             }
             break;
         case 8:
-            if (year >= 2016 && day == 11) {
+            if (year >= 2021 && day == 11) {
+                name = YAMANOHI;
+            }
+            else if (year == 2020) {
+                if (day == 10) {
+                    name = YAMANOHI;
+                }
+            }
+            else if (year >= 2016 && day == 11) {
                 name = YAMANOHI;
             }
             break;
@@ -310,7 +345,17 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             }
             break;
         case 10:
-            if (year >= 2000) {
+            if (year >= 2021) {
+                if ((day - 1) / 7 == 1) {
+                    if ((weekday = get_weekday(date)) == -1) { return NULL; }
+                    if (weekday == 0) {
+                        name = SUPOTSUNOHI;
+                    }
+                }
+            }
+            else if (year == 2020) {
+            }
+            else if (year >= 2000) {
                 if ((day - 1) / 7 == 1) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
                     if (weekday == 0) {
@@ -457,6 +502,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (KEIRONOHI == NULL && (KEIRONOHI = PyUnicode_FromString("敬老の日")) == NULL) { goto fail; }
     if (SHUBUNNOHI == NULL && (SHUBUNNOHI = PyUnicode_FromString("秋分の日")) == NULL) { goto fail; }
     if (TAIKUNOHI == NULL && (TAIKUNOHI = PyUnicode_FromString("体育の日")) == NULL) { goto fail; }
+    if (SUPOTSUNOHI == NULL && (SUPOTSUNOHI = PyUnicode_FromString("スポーツの日")) == NULL) { goto fail; }
     if (BUNKANOHI == NULL && (BUNKANOHI = PyUnicode_FromString("文化の日")) == NULL) { goto fail; }
     if (KINROKANSHANOHI == NULL && (KINROKANSHANOHI = PyUnicode_FromString("勤労感謝の日")) == NULL) { goto fail; }
     if (TENNOTANJOBI == NULL && (TENNOTANJOBI = PyUnicode_FromString("天皇誕生日")) == NULL) { goto fail; }
@@ -486,6 +532,7 @@ fail:
     Py_CLEAR(KEIRONOHI);
     Py_CLEAR(SHUBUNNOHI);
     Py_CLEAR(TAIKUNOHI);
+    Py_CLEAR(SUPOTSUNOHI);
     Py_CLEAR(BUNKANOHI);
     Py_CLEAR(KINROKANSHANOHI);
     Py_CLEAR(TENNOTANJOBI);
