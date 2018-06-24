@@ -248,7 +248,7 @@ CJHoliday_HolidayNameDate(PyObject *date) {
                 }
                 else if (year >= 1986) {
                     if ((weekday = get_weekday(date)) == -1) { return NULL; }
-                    if (weekday != 0) {
+                    if (weekday != 0 && weekday != 6) {
                         name = KOKUMINNOKYUJITSU;
                     }
                 }
