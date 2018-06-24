@@ -345,22 +345,25 @@ CJHoliday_HolidayNameDate(PyObject *date) {
             if ((weekday = get_weekday(date)) == -1) { return NULL; }
         }
         if (weekday == 0) {
-            PyObject *prev_date, *prev_name;
+            if (year > 1973 || (year == 1973 && (month > 4 || (month == 4 && day >= 12)))) {
+                PyObject *prev_date, *prev_name;
 
-            prev_date = PyNumber_Subtract(date, Delta_Day1);
-            if (prev_date == NULL) { return NULL; }
+                prev_date = PyNumber_Subtract(date, Delta_Day1);
+                if (prev_date == NULL) { return NULL; }
 
-            prev_name = CJHoliday_HolidayNameDate(prev_date);
-            Py_DECREF(prev_date);
-            if (prev_name == NULL) { return NULL; }
+                prev_name = CJHoliday_HolidayNameDate(prev_date);
+                Py_DECREF(prev_date);
+                if (prev_name == NULL) { return NULL; }
 
-            if (prev_name == Py_None) {
-                return prev_name;
+                if (prev_name == Py_None) {
+                    return prev_name;
+                }
+                Py_DECREF(prev_name);
+
+                name = FURIKAEKYUJITSU;
             }
-            Py_DECREF(prev_name);
-
-            name = FURIKAEKYUJITSU;
         }
+
     }
 
     Py_INCREF(name);
