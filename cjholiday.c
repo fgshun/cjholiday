@@ -469,7 +469,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (module == NULL) { goto fail; }
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.1.3")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.1.4")) { goto fail; }
 
     /* Initialize the C API pointer array */
     CJHoliday_API[CJHoliday_HolidayName_NUM] = (void *)CJHoliday_HolidayName;
