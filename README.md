@@ -16,12 +16,12 @@ Python 3.6.5, 3.7.0 でのビルド、動作確認ができています。
 'スポーツの日'
 ```
 
-## Building
+## Install
 ```
 pip install git+https://github.com/fgshun/cjholiday#egg=cjholiday
 ```
 
-### for Windows 10
+### for Windows
 Python 3.6 もしくは 3.7 と Visual Studio 2017 を用意してください。
 また、  pip install の実行の際に環境変数 `CL` に `/utf-8` を設定しておいてください。
 つまり、 PowerShell では
