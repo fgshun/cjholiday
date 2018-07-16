@@ -5,7 +5,7 @@ extensions = [Extension('cjholiday', sources = ['cjholiday.c'])]
 
 setup(
         name='cjholiday',
-        version='1.1.4',
+        version='1.2.0',
         author='fgshun',
         author_email='fgshun@gmail.com',
         url='http://www.lazy-moon.jp/',

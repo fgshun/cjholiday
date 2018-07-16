@@ -94,7 +94,6 @@ static PyObject *SOKUIREISEIDENNOGI;
 static PyObject *KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
 
 static struct PyModuleDef cjholiday_module;
-#define cjholidaystate(o) ((cjholidayState*)PyModule_GetState(o))
 
 static long get_weekday(PyObject *date) {
     /* date.weekday()
@@ -448,42 +447,48 @@ static PyMethodDef cjholiday_method[] = {
     {NULL, NULL, 0, NULL}
 };
 
+static CJHoliday_CAPI CAPI = {
+    &CJHoliday_HolidayName,
+    &CJHoliday_HolidayNameDate
+};
+
+static int cjholiday_exec (PyObject *module) {
+    PyObject *c_api_object = NULL;
+
+    /* version */
+    if (PyModule_AddStringConstant(module, "version", "1.2.0")) { goto fail; }
+
+    /* initialize _C_API */
+    c_api_object = PyCapsule_New(&CAPI, "cjholiday._C_API", NULL);
+    if (c_api_object == NULL) { goto fail; }
+    if (PyModule_AddObject(module, "_C_API", c_api_object) == -1) { goto fail; }
+
+    return 0;
+fail:
+    Py_XDECREF(c_api_object);
+    Py_XDECREF(module);
+    return -1;
+}
+
+static PyModuleDef_Slot cjholiday_slots[] = {
+    {Py_mod_exec, cjholiday_exec},
+    {0, NULL}
+};
+
 static struct PyModuleDef cjholiday_module = {
     PyModuleDef_HEAD_INIT,
     "cjholiday",
     NULL,
     0,
     cjholiday_method,
-    NULL,
+    cjholiday_slots,
     NULL,
     NULL,
     NULL
 };
 
 PyMODINIT_FUNC PyInit_cjholiday(void) {
-    PyObject *module = NULL;
-    PyObject *c_api_object = NULL;
-    static void *CJHoliday_API[CJHoliday_API_pointers];
-
-    module = PyModule_Create(&cjholiday_module);
-    if (module == NULL) { goto fail; }
-
-    /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.1.4")) { goto fail; }
-
-    /* Initialize the C API pointer array */
-    CJHoliday_API[CJHoliday_HolidayName_NUM] = (void *)CJHoliday_HolidayName;
-    CJHoliday_API[CJHoliday_HolidayNameDate_NUM] = (void *)CJHoliday_HolidayNameDate;
-
-    /* Create a Capsule containing the API pointer array's address */
-    c_api_object = PyCapsule_New((void *)CJHoliday_API, "cjholiday._C_API", NULL);
-    if (c_api_object == NULL) { goto fail; }
-
-    if (PyModule_AddObject(module, "_C_API", c_api_object) == -1) { goto fail; }
-
-    /* datetime 関連の C API を使えるようにする */
-    PyDateTime_IMPORT;
-    if (!PyDateTimeAPI) { goto fail; }
+    if (!(PyDateTime_IMPORT)) { return NULL; }
 
     /* datetime.timedelta(days=1) */
     if (Delta_Day1 == NULL && (Delta_Day1 = PyDelta_FromDSU(1, 0, 0)) == NULL) { goto fail; }
@@ -513,11 +518,9 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (SOKUIREISEIDENNOGI == NULL && (SOKUIREISEIDENNOGI = PyUnicode_FromString("即位礼正殿の儀")) == NULL) { goto fail; }
     if (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI == NULL && (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = PyUnicode_FromString("皇太子徳仁親王の結婚の儀")) == NULL) { goto fail; }
 
-    return module;
+    return PyModuleDef_Init(&cjholiday_module);
 
 fail:
-    Py_XDECREF(module);
-    Py_CLEAR(c_api_object);
     Py_CLEAR(Delta_Day1);
     Py_CLEAR(GANJITSU);
     Py_CLEAR(SEIJINNOHI);

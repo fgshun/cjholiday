@@ -4,40 +4,23 @@
 extern "C" {
 #endif
 
-/* C API functions */
-#define CJHoliday_HolidayName_NUM 0
-#define CJHoliday_HolidayName_RETURN PyObject *
-#define CJHoliday_HolidayName_PROTO (long year, long month, long day)
-#define CJHoliday_HolidayNameDate_NUM 1
-#define CJHoliday_HolidayNameDate_RETURN PyObject *
-#define CJHoliday_HolidayNameDate_PROTO (PyObject *date)
-
-/* Total number of C API pointers */
-#define CJHoliday_API_pointers 2
+typedef struct {
+    PyObject *(*HolidayName)(long, long, long);
+    PyObject *(*HolidayNameDate)(PyObject*);
+} CJHoliday_CAPI;
 
 
 #ifdef CJHOLIDAY_MODULE
-/* This section is used when compiling cjholiday.c */
-
-static CJHoliday_HolidayName_RETURN CJHoliday_HolidayName CJHoliday_HolidayName_PROTO;
-static CJHoliday_HolidayNameDate_RETURN CJHoliday_HolidayNameDate CJHoliday_HolidayNameDate_PROTO;
+static PyObject *CJHoliday_HolidayName(long year, long month, long day);
+static PyObject *CJHoliday_HolidayNameDate(PyObject *date);
 
 #else
-/* This section is used in modules that use cjholiday's API */
+static CJHoliday_CAPI *CJHoliday_API;
 
-static void **CJHoliday_API;
+#define CJHoliday_HolidayName(year, month, day) CJHoliday_API->HolidayName(year, month, day);
+#define CJHoliday_HolidayNameDate(date) CJHoliday_API->HolidayNameDate(date);
 
-#define CJHoliday_HolidayName \
- (*(CJHoliday_HolidayName_RETURN (*)CJHoliday_HolidayName_PROTO) CJHoliday_API[CJHoliday_HolidayName_NUM])
-#define CJHoliday_HolidayNameDate \
- (*(CJHoliday_HolidayNameDate_RETURN (*)CJHoliday_HolidayNameDate_PROTO) CJHoliday_API[CJHoliday_HolidayNameDate_NUM])
-
-static int
-import_cjholiday(void)
-{
-    CJHoliday_API = (void **)PyCapsule_Import("cjholiday._C_API", 0);
-    return (CJHoliday_API != NULL) ? 0 : -1;
-}
+#define CJHoliday_IMPORT CJHoliday_API = (CJHoliday_CAPI*)PyCapsule_Import("cjholiday._C_API", 0)
 
 #endif
 
@@ -45,4 +28,4 @@ import_cjholiday(void)
 }
 #endif
 
-#endif /* !defined(CJHOLIDAY_H) */
+#endif
