@@ -177,7 +177,11 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     long weekday = -1;
     PyObject *name = Py_None;
 
-    if (!PyDate_Check(date)) { return NULL; }
+    if (!PyDate_Check(date)) {
+        PyErr_SetString(PyExc_TypeError,
+                        "date arg must be datetime.date");
+        return NULL;
+    }
 
     year = PyDateTime_GET_YEAR(date);
     month = PyDateTime_GET_MONTH(date);
