@@ -93,9 +93,7 @@ static PyObject *SOKUIREISEIDENNOGI;
 /* 皇太子徳仁親王の結婚の儀 */
 static PyObject *KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
 
-static struct PyModuleDef cjholiday_module;
-
-static long get_weekday(PyObject *date) {
+static int get_weekday(PyObject *date) {
     /* date.weekday()
        失敗時、例外を設定し -1 を返す。*/
     long weekday;
@@ -106,22 +104,24 @@ static long get_weekday(PyObject *date) {
     weekday = PyLong_AsLong(weekday_py);
     Py_DECREF(weekday_py);
 
-    return weekday;
+    /* weekday is in 0..6 */
+    if (weekday == -1) { return -1; }
+    return (int)weekday;
 }
 
-static long vernal_equinox(long year) {
+static int vernal_equinox(int year) {
     /* 春分の日判定 */
-    long day;
+    int day;
     if (year <= 1947){
         day = 0;
     } else if (year <= 1979){
-        day = (long)(20.8357 + (0.242194 * (year - 1980)) -
+        day = (20.8357 + (0.242194 * (year - 1980)) -
                 (year - 1983) / 4);
     } else if (year <= 2099){
-        day = (long)(20.8431 + (0.242194 * (year - 1980)) -
+        day = (20.8431 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else if (year <= 2150){
-        day = (long)(21.851 + (0.242194 * (year - 1980)) -
+        day = (21.851 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else {
         day = 0;
@@ -130,19 +130,19 @@ static long vernal_equinox(long year) {
     return day;
 }
 
-static long autumn_equinox(long year) {
+static int autumn_equinox(int year) {
     /* 秋分の日判定 */
-    long day;
+    int day;
     if (year <= 1947){
         day = 0;
     } else if (year <= 1979){
-        day = (long)(23.2588 + (0.242194 * (year - 1980)) -
+        day = (23.2588 + (0.242194 * (year - 1980)) -
                 (year - 1983) / 4);
     } else if (year <= 2099){
-        day = (long)(23.2488 + (0.242194 * (year - 1980)) -
+        day = (23.2488 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else if (year <= 2150){
-        day = (long)(24.2488 + (0.242194 * (year - 1980)) -
+        day = (24.2488 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else {
         day = 0;
@@ -152,7 +152,7 @@ static long autumn_equinox(long year) {
 }
 
 static PyObject *
-CJHoliday_HolidayName(long year, long month, long day) {
+CJHoliday_HolidayName(int year, int month, int day) {
     /* year, month, day の祝日名を返す。祝日ではないときは None を返す。
        失敗時、例外を設定し NULL を返す。
      */
@@ -172,9 +172,9 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     /* 祝日名を返す。祝日ではないときは None を返す。
        失敗時、例外を設定し NULL を返す。
      */
-    long year, month, day;
-    long autumn;
-    long weekday = -1;
+    int year, month, day;
+    int autumn;
+    int weekday = -1;
     PyObject *name = Py_None;
 
     if (!PyDate_Check(date)) {
@@ -417,27 +417,49 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     return name;
 }
 
+static int
+holiday_pyint_as_int(PyObject *obj)
+{
+    int overflow;
+    long result = PyLong_AsLongAndOverflow(obj, &overflow);
+    if (overflow || result > INT_MAX || result < INT_MIN) {
+        PyErr_SetString(PyExc_OverflowError,
+                        "Python int too large to convert to C int");
+        return -1;
+    }
+    return (int)result;
+}
+
 static PyObject *
 holiday_name(PyObject *self, PyObject *args, PyObject *kwargs) {
     /* 年月日を表す 3 整数もしくは date の祝日判定 */
     PyObject *result;
-    PyObject *year = NULL, *month = NULL, *day = NULL, *date = NULL;
+    PyObject *pyyear = NULL, *pymonth = NULL, *pyday = NULL, *date = NULL;
+    int year, month, day;
     static char *kwlist[] = {"year", "month", "day", "date", NULL};
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|OOOO", kwlist, &year, &month, &day, &date)) {
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|OOOO", kwlist, &pyyear, &pymonth, &pyday, &date)) {
         return NULL;
     }
 
-    if (date != NULL && PyDate_Check(date)) {
+    if (date != NULL) {
+        if (pyyear != NULL || pymonth != NULL || pyday != NULL) {
+            PyErr_SetString(PyExc_TypeError, "if date argument is not empty, year, month, day must be empty");
+            return NULL;
+        }
         result = CJHoliday_HolidayNameDate(date);
-    } else if (year != NULL && PyLong_Check(year) &&
-               month != NULL && PyLong_Check(month) &&
-               day != NULL && PyLong_Check(day)) {
-        result = CJHoliday_HolidayName(
-                PyLong_AsLong(year), PyLong_AsLong(month), PyLong_AsLong(day));
     } else {
-        PyErr_SetString(PyExc_TypeError, "year, month, day is not int or date is not datetime.date");
-        return NULL;
+        if (pyyear == NULL || pymonth == NULL || pyday == NULL) {
+            PyErr_SetString(PyExc_TypeError, "without date argument, year, month, day is required");
+            return NULL;
+        }
+        year = holiday_pyint_as_int(pyyear);
+        if (year == -1 && PyErr_Occurred()) { return NULL; }
+        month = holiday_pyint_as_int(pymonth);
+        if (month == -1 && PyErr_Occurred()) { return NULL; }
+        day = holiday_pyint_as_int(pyday);
+        if (day == -1 && PyErr_Occurred()) { return NULL; }
+        result = CJHoliday_HolidayName(year, month, day);
     }
 
     return result;

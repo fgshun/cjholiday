@@ -5,13 +5,13 @@ extern "C" {
 #endif
 
 typedef struct {
-    PyObject *(*HolidayName)(long, long, long);
+    PyObject *(*HolidayName)(int, int, int);
     PyObject *(*HolidayNameDate)(PyObject*);
 } CJHoliday_CAPI;
 
 
 #ifdef CJHOLIDAY_MODULE
-static PyObject *CJHoliday_HolidayName(long year, long month, long day);
+static PyObject *CJHoliday_HolidayName(int year, int month, int day);
 static PyObject *CJHoliday_HolidayNameDate(PyObject *date);
 
 #else
