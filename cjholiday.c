@@ -103,8 +103,7 @@ static long get_weekday(PyObject *date) {
 
     weekday_py = PyObject_CallMethod(date, "weekday", NULL);
     if (weekday_py == NULL) { return -1; }
-    weekday = PyLong_AS_LONG(weekday_py);
-    if (weekday == -1 && PyErr_Occurred()) { return -1; }
+    weekday = PyLong_AsLong(weekday_py);
     Py_DECREF(weekday_py);
 
     return weekday;
