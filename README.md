@@ -39,8 +39,17 @@ SET CL=/utf-8
 Python C 拡張からの直接の使用ができます。
 そのためには `cjholiday.h` を include してモジュール初期化時に `CJHoliday_IMPORT` マクロを起動しておいてください。
 
+    PyMODINIT_FUNC
+    PyInit_usecjholiday(void)
+    {
+        if (!(CJHoliday_IMPORT)) {
+            return NULL;
+        }
+        return PyModuleDef_Init(&usecjholiday_module);
+    }
+
 `static PyObject *CJHoliday_HolidayName(int year, int month, int day)`  
-年月日を表す 3 つの int からその日が祝日かどうかを判別します。祝日名もしくは None を返します。
+年月日を表す 3 つの int からその日が祝日かどうかを判別します。祝日であれば祝日名 str を返します。異なれば None を返します。
 
 `static PyObject *CJHoliday_HolidayNameDate(PyObject *date)`  
-datetime.date からその日が祝日かどうかを判別します。祝日名もしくは None を返します。
+datetime.date からその日が祝日かどうかを判別します。祝日であれば祝日名 str を返します。異なれば None を返します。
