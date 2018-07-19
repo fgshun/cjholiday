@@ -2,7 +2,7 @@
 
 [AddinBox](http://addinbox.sakura.ne.jp/holiday_logic.htm) のコードを Python C 拡張として書き直したものです。
 
-Python 3.6.5, 3.7.0 でのビルド、動作確認ができています。
+Python 3.6.6, 3.7.0 でのビルド、動作確認ができています。
 
 ```
 >>> import cjholiday
@@ -33,3 +33,14 @@ set-item env:CL -value /utf-8
 SET CL=/utf-8
 ```
 です。
+
+
+## C API
+Python C 拡張からの直接の使用ができます。
+そのためには `cjholiday.h` を include してモジュール初期化時に `CJHoliday_IMPORT` マクロを起動しておいてください。
+
+`static PyObject *CJHoliday_HolidayName(int year, int month, int day)`  
+年月日を表す 3 つの int からその日が祝日かどうかを判別します。祝日名もしくは None を返します。
+
+`static PyObject *CJHoliday_HolidayNameDate(PyObject *date)`  
+datetime.date からその日が祝日かどうかを判別します。祝日名もしくは None を返します。
