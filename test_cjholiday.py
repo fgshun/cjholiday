@@ -26,6 +26,9 @@ class HolidayNameTestCase(unittest.TestCase):
             self.assertEqual(
                     j(date.year, date.month, date.day),
                     c(year=date.year, month=date.month, day=date.day))
+            self.assertEqual(
+                    j(date.year, date.month, date.day),
+                    c(date=date))
 
 if __name__ == '__main__':
     unittest.main()
