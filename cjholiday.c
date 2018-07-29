@@ -207,7 +207,7 @@ check_date_args(int year, int month, int day)
 /* --- end copy from _datetimemodule.c --- */
 
 /* --- start copy from longobject.c --- */
-/* the original name is _PyLong_AsInt(PyObject *obj) */
+/* The original name is _PyLong_AsInt(PyObject *obj) */
 static int
 pylong_as_int(PyObject *obj)
 {
@@ -223,16 +223,16 @@ pylong_as_int(PyObject *obj)
 /* --- end copy from longobject.c --- */
 
 static void
-prev_ymd(int *y, int *m, int *d)
+prev_ymd(int *year, int *month, int *day)
 {
-    *d -= 1;
-    if (*d < 1) {
-        *m -= 1;
-        if (*m < 1) {
-            *m = 1;
-            *y -= 1;
+    *day -= 1;
+    if (*day < 1) {
+        *month -= 1;
+        if (*month < 1) {
+            *month = 1;
+            *year -= 1;
         }
-        *d = days_in_month(*y, *m);
+        *day = days_in_month(*year, *month);
     }
 }
 
@@ -242,13 +242,13 @@ static int vernal_equinox(int year) {
     if (year <= 1947){
         day = 0;
     } else if (year <= 1979){
-        day = (20.8357 + (0.242194 * (year - 1980)) -
+        day = (int)(20.8357 + (0.242194 * (year - 1980)) -
                 (year - 1983) / 4);
     } else if (year <= 2099){
-        day = (20.8431 + (0.242194 * (year - 1980)) -
+        day = (int)(20.8431 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else if (year <= 2150){
-        day = (21.851 + (0.242194 * (year - 1980)) -
+        day = (int)(21.851 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else {
         day = 0;
@@ -263,13 +263,13 @@ static int autumn_equinox(int year) {
     if (year <= 1947){
         day = 0;
     } else if (year <= 1979){
-        day = (23.2588 + (0.242194 * (year - 1980)) -
+        day = (int)(23.2588 + (0.242194 * (year - 1980)) -
                 (year - 1983) / 4);
     } else if (year <= 2099){
-        day = (23.2488 + (0.242194 * (year - 1980)) -
+        day = (int)(23.2488 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else if (year <= 2150){
-        day = (24.2488 + (0.242194 * (year - 1980)) -
+        day = (int)(24.2488 + (0.242194 * (year - 1980)) -
                 (year - 1980) / 4);
     } else {
         day = 0;
