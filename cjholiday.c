@@ -1,3 +1,4 @@
+#define Py_LIMITED_API 0x03050000
 #include <Python.h>
 #include <datetime.h>
 #define CJHOLIDAY_MODULE
@@ -526,17 +527,26 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     /* 祝日名を返す。祝日ではないときは None を返す。
        失敗時、例外を設定し NULL を返す。
      */
+    PyObject *temp;
     int year, month, day;
 
-    if (!PyDate_Check(date)) {
-        PyErr_SetString(PyExc_TypeError,
-                        "date arg must be datetime.date");
-        return NULL;
-    }
+    temp = PyObject_GetAttrString(date, "year");
+    if (temp == NULL) { return NULL; }
+    year = pylong_as_int(temp);
+    Py_DECREF(temp);
+    if (year == -1 && PyErr_Occurred()) { return NULL; }
 
-    year = PyDateTime_GET_YEAR(date);
-    month = PyDateTime_GET_MONTH(date);
-    day = PyDateTime_GET_DAY(date);
+    temp = PyObject_GetAttrString(date, "month");
+    if (temp == NULL) { return NULL; }
+    month = pylong_as_int(temp);
+    Py_DECREF(temp);
+    if (month == -1 && PyErr_Occurred()) { return NULL; }
+
+    temp = PyObject_GetAttrString(date, "day");
+    if (temp == NULL) { return NULL; }
+    day = pylong_as_int(temp);
+    Py_DECREF(temp);
+    if (day == -1 && PyErr_Occurred()) { return NULL; }
 
     return calc_holiday_name(year, month, day);
 }
@@ -624,8 +634,6 @@ static struct PyModuleDef cjholiday_module = {
 };
 
 PyMODINIT_FUNC PyInit_cjholiday(void) {
-    if (!(PyDateTime_IMPORT)) { return NULL; }
-
     /* 祝日名 */
     if (GANJITSU == NULL && (GANJITSU = PyUnicode_FromString("元日")) == NULL) { goto fail; }
     if (SEIJINNOHI == NULL && (SEIJINNOHI = PyUnicode_FromString("成人の日")) == NULL) { goto fail; }

@@ -2,7 +2,7 @@
 
 [AddinBox](http://addinbox.sakura.ne.jp/holiday_logic.htm) のコードを Python C 拡張として書き直したものです。
 
-Python 3.6.6, 3.7.0 でのビルド、動作確認ができています。
+Python 3.5 以降でのビルド、動作確認ができています。
 
 ```
 >>> import cjholiday
@@ -21,7 +21,7 @@ Python 3.6.6, 3.7.0 でのビルド、動作確認ができています。
 pip install git+https://github.com/fgshun/cjholiday#egg=cjholiday
 ```
 
-### for Windows
+### Building on Windows
 Python 3.6 もしくは 3.7 と Visual Studio 2017 を用意してください。
 また、  pip install の実行の際に環境変数 `CL` に `/utf-8` を設定しておいてください。
 つまり、 PowerShell では
