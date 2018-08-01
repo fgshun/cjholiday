@@ -44,8 +44,6 @@
  * を fgshun が C エクステンションとして組みなおしたものです。
  */
 
-/* datetime.timedelta(days=1) */
-static PyObject *Delta_Day1;
 /* 元日 */
 static PyObject *GANJITSU;
 /* 成人の日 */
@@ -590,7 +588,7 @@ static CJHoliday_CAPI CAPI = {
     &CJHoliday_HolidayNameDate
 };
 
-static int cjholiday_exec (PyObject *module) {
+static int cjholiday_exec(PyObject *module) {
     PyObject *c_api_object = NULL;
 
     /* version */
@@ -628,9 +626,6 @@ static struct PyModuleDef cjholiday_module = {
 PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (!(PyDateTime_IMPORT)) { return NULL; }
 
-    /* datetime.timedelta(days=1) */
-    if (Delta_Day1 == NULL && (Delta_Day1 = PyDelta_FromDSU(1, 0, 0)) == NULL) { goto fail; }
-
     /* 祝日名 */
     if (GANJITSU == NULL && (GANJITSU = PyUnicode_FromString("元日")) == NULL) { goto fail; }
     if (SEIJINNOHI == NULL && (SEIJINNOHI = PyUnicode_FromString("成人の日")) == NULL) { goto fail; }
@@ -659,7 +654,6 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     return PyModuleDef_Init(&cjholiday_module);
 
 fail:
-    Py_CLEAR(Delta_Day1);
     Py_CLEAR(GANJITSU);
     Py_CLEAR(SEIJINNOHI);
     Py_CLEAR(KENKOKUKINENNOHI);
