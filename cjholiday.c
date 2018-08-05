@@ -1,6 +1,5 @@
 #define Py_LIMITED_API 0x03050000
 #include <Python.h>
-#include <datetime.h>
 #define CJHOLIDAY_MODULE
 #include "cjholiday.h"
 
