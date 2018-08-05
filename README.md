@@ -1,8 +1,6 @@
 # 祝日判定
-
 [AddinBox](http://addinbox.sakura.ne.jp/holiday_logic.htm) のコードを Python C 拡張として書き直したものです。
-
-Python 3.6.6, 3.7.0 でのビルド、動作確認ができています。
+Python 3.5 以降でのビルド、動作確認ができています。
 
 ```
 >>> import cjholiday
@@ -21,19 +19,17 @@ Python 3.6.6, 3.7.0 でのビルド、動作確認ができています。
 pip install git+https://github.com/fgshun/cjholiday#egg=cjholiday
 ```
 
-### for Windows
-Python 3.6 もしくは 3.7 と Visual Studio 2017 を用意してください。
-また、  pip install の実行の際に環境変数 `CL` に `/utf-8` を設定しておいてください。
-つまり、 PowerShell では
+### Install on Windows
 ```
-set-item env:CL -value /utf-8
+# Python 3.7
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.2.0/cjholiday-1.2.0-cp37-cp37m-win_amd64.whl
+# Python 3.6
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.2.0/cjholiday-1.2.0-cp36-cp36m-win_amd64.whl
 ```
-です。 cmd.exe では
-```
-SET CL=/utf-8
-```
-です。
 
+### Building on Windows
+Python 3.6 もしくは 3.7 と Visual Studio 2017 を用意してください。
+また、 環境変数 `CL` に `/utf-8` を設定しておいてください。
 
 ## C API
 Python C 拡張からの直接の使用ができます。
