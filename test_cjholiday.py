@@ -1,5 +1,7 @@
+import collections
 import datetime
 import functools
+import itertools
 import operator
 
 import pytest
@@ -55,7 +57,9 @@ def test_args(dates):
 
     for date in dates:
         s = holiday_name(date.year, date.month, date.day)
-        assert holiday_name(year=date.year, month=date.month, day=date.day) == s
+        assert holiday_name(year=date.year,
+                            month=date.month,
+                            day=date.day) == s
         assert holiday_name(date=date) == s
 
 
@@ -67,7 +71,9 @@ def test_diff_jholiday(dates):
     c = cjholiday.holiday_name
 
     for date in dates:
-        assert j(date.year, date.month, date.day) == c(date.year, date.month, date.day)
+        j_ = j(date.year, date.month, date.day)
+        c_ = c(date.year, date.month, date.day)
+        assert j_ == c_
 
 
 def test_2018():
@@ -95,6 +101,20 @@ def test_2018():
     assert holiday_name(2018, 4, 30) == '振替休日'
     assert holiday_name(2018, 9, 24) == '振替休日'
     assert holiday_name(2018, 12, 24) == '振替休日'
+
+
+def test_duplicated(dates):
+    """重複確認、同じ年に同じ祝日はない"""
+    holiday_name = cjholiday.holiday_name
+    ignore = {'振替休日', '国民の休日'}
+    contains = functools.partial(operator.contains, ignore)
+
+    for year, dates_ in itertools.groupby(dates, operator.attrgetter('year')):
+        holidays = (holiday_name(date=date) for date in dates_)
+        holidays = filter(None, holidays)
+        holidays = itertools.filterfalse(contains, holidays)
+        c = collections.Counter(holidays)
+        assert max(c.values(), default=0) <= 1
 
 
 def test_ganjitsu(years):
@@ -405,7 +425,7 @@ def test_supotsunohi(years):
     for year in years:
         if year < 2020:
             p0724, p10m2 = f, f
-        elif year == 2000:
+        elif year == 2020:
             # 2020年から存在、この年だけ7月24日
             p0724, p10m2 = t, f
         else:
@@ -413,5 +433,5 @@ def test_supotsunohi(years):
             p0724, p10m2 = f, t
 
         m2 = fetch_nth_monday(year, 10, n=2)
-        p0724(holiday_name(year, 7, 24))
-        p10m2(holiday_name(date=m2))
+        assert p0724(holiday_name(year, 7, 24))
+        assert p10m2(holiday_name(date=m2))
