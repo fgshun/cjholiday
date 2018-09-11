@@ -31,15 +31,15 @@
 //_/      へのリンクによる紹介で対応して下さい。
 //_/  (*3)[ktHolidayName]という関数名そのものは、各自の環境に
 //_/      おける命名規則に沿って変更しても構いません。
-//_/  
+//_/
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 */
 
 /*
- * fgshun  http://d.hatena.ne.jp/fgshun/
+ * fgshun  https://github.com/fgshun
  *
  * このコードは
- * SETOGUCHI Mitsuhiro (https://straitmouth.jp/blog/setomits/) 氏のスクリプト
+ * SETOGUCHI Mitsuhiro (http://straitmouth.jp/) 氏のスクリプト
  * (http://addinbox.sakura.ne.jp/holiday_logic5.htm#Python)
  * を fgshun が C エクステンションとして組みなおしたものです。
  */
