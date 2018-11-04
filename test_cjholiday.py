@@ -63,6 +63,7 @@ def test_args(dates):
         assert holiday_name(date=date) == s
 
 
+@pytest.mark.xfail()
 def test_diff_jholiday(dates):
     """移植元との比較"""
     jholiday = pytest.importorskip('jholiday')
@@ -71,9 +72,8 @@ def test_diff_jholiday(dates):
     c = cjholiday.holiday_name
 
     for date in dates:
-        j_ = j(date.year, date.month, date.day)
-        c_ = c(date.year, date.month, date.day)
-        assert j_ == c_
+        assert j(date.year, date.month, date.day) == \
+               c(date.year, date.month, date.day)
 
 
 def test_2018():
