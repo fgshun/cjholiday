@@ -72,8 +72,9 @@ def test_diff_jholiday(dates):
     c = cjholiday.holiday_name
 
     for date in dates:
-        assert j(date.year, date.month, date.day) == \
-               c(date.year, date.month, date.day)
+        assert \
+            j(date.year, date.month, date.day) == \
+            c(date.year, date.month, date.day)
 
 
 def test_2018():
