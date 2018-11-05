@@ -11,4 +11,6 @@ setup(
         url='http://www.lazy-moon.jp/',
         py_modules=py_modules,
         headers=['cjholiday.h'],
-        ext_modules=extensions)
+        ext_modules=extensions,
+        setup_requires=['pytest-runner'],
+        tests_require=['pytest'])

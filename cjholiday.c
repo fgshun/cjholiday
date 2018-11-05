@@ -31,15 +31,15 @@
 //_/      へのリンクによる紹介で対応して下さい。
 //_/  (*3)[ktHolidayName]という関数名そのものは、各自の環境に
 //_/      おける命名規則に沿って変更しても構いません。
-//_/  
+//_/
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 */
 
 /*
- * fgshun  http://d.hatena.ne.jp/fgshun/
+ * fgshun  https://github.com/fgshun
  *
  * このコードは
- * SETOGUCHI Mitsuhiro (https://straitmouth.jp/blog/setomits/) 氏のスクリプト
+ * SETOGUCHI Mitsuhiro (http://straitmouth.jp/) 氏のスクリプト
  * (http://addinbox.sakura.ne.jp/holiday_logic5.htm#Python)
  * を fgshun が C エクステンションとして組みなおしたものです。
  */
@@ -90,6 +90,8 @@ static PyObject *SHOWATENNOUNOTAIMOUNOREI;
 static PyObject *SOKUIREISEIDENNOGI;
 /* 皇太子徳仁親王の結婚の儀 */
 static PyObject *KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI;
+/* 即位の日 */
+static PyObject *SOKUINOHI;
 
 /* --- start copy from _datetimemodule.c --- */
 
@@ -341,6 +343,9 @@ calc_holiday_name(int year, int month, int day) {
                     name = TENNOTANJOBI;
                 }
             }
+            else if (year == 2019 && day == 30) {
+                name = KOKUMINNOKYUJITSU;
+            }
             else if (year == 1959 && day == 10) {
                 /* 1959/4/10 */
                 name = KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI;
@@ -370,6 +375,14 @@ calc_holiday_name(int year, int month, int day) {
                     if (_weekday == 1 || _weekday == 2) {
                         name = FURIKAEKYUJITSU;
                     }
+                }
+            }
+            else if (year == 2019) {
+                if (day == 1) {
+                    name = SOKUINOHI;
+                }
+                else if (day == 2) {
+                    name = KOKUMINNOKYUJITSU;
                 }
             }
             break;
@@ -451,6 +464,9 @@ calc_holiday_name(int year, int month, int day) {
                 }
             }
             else if (year == 2020) {
+            }
+            else if (year == 2019 && day == 22) {
+                name = SOKUIREISEIDENNOGI;
             }
             else if (year >= 2000) {
                 if ((day - 1) / 7 == 1) {
@@ -650,6 +666,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (SHOWATENNOUNOTAIMOUNOREI == NULL && (SHOWATENNOUNOTAIMOUNOREI = PyUnicode_FromString("昭和天皇の大喪の礼")) == NULL) { goto fail; }
     if (SOKUIREISEIDENNOGI == NULL && (SOKUIREISEIDENNOGI = PyUnicode_FromString("即位礼正殿の儀")) == NULL) { goto fail; }
     if (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI == NULL && (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = PyUnicode_FromString("皇太子徳仁親王の結婚の儀")) == NULL) { goto fail; }
+    if (SOKUINOHI == NULL && (SOKUINOHI = PyUnicode_FromString("即位の日")) == NULL) { goto fail; }
 
     return PyModuleDef_Init(&cjholiday_module);
 
@@ -677,6 +694,7 @@ fail:
     Py_CLEAR(SHOWATENNOUNOTAIMOUNOREI);
     Py_CLEAR(SOKUIREISEIDENNOGI);
     Py_CLEAR(KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI);
+    Py_CLEAR(SOKUINOHI);
     return NULL;
 }
 /*
