@@ -77,6 +77,18 @@ def test_diff_jholiday(dates):
             c(date.year, date.month, date.day)
 
 
+def test_diff_jholidaydict(dates):
+    """拙作 jholidaydict との比較"""
+    jholidaydict = pytest.importorskip('jholidaydict')
+
+    jholiday_ins = jholidaydict.JHoliday()
+    j = jholiday_ins.make_dict().get
+    c = cjholiday.holiday_name
+
+    for date in jholiday_ins.iter_all_dates():
+        assert j(date) == c(date=date)
+
+
 def test_2018():
     """「平成30年(2018)暦要項」との比較"""
     holiday_name = cjholiday.holiday_name
