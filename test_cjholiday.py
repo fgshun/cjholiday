@@ -82,7 +82,7 @@ def test_diff_jholidaydict(dates):
     jholidaydict = pytest.importorskip('jholidaydict')
 
     jholiday_ins = jholidaydict.JHoliday()
-    j = jholiday_ins.make_dict().get
+    j = jholiday_ins.get
     c = cjholiday.holiday_name
 
     for date in jholiday_ins.iter_all_dates():
