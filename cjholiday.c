@@ -6,6 +6,8 @@
 /*
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 //_/
+//_/  --- Python 移植版 ( Update: 2018/12/8 ) ---
+//_/
 //_/  CopyRight(C) K.Tsunoda(AddinBox) 2001 All Rights Reserved.
 //_/  ( AddinBox  http://addinbox.sakura.ne.jp/index.htm )
 //_/  (  旧サイト  http://www.h3.dion.ne.jp/~sakatsu/index.htm )
@@ -15,14 +17,13 @@
 //_/  【条件判定の実行】で結果を出せるように設計してあります。
 //_/
 //_/  この関数では以下の祝日変更までサポートしています。
-//_/  ・２０１９年施行の「天皇誕生日の変更」 12/23⇒2/23 (補：2019年には[天皇誕生日]はありません)
-//_/  ・２０２０年施行の「体育の日の改名」⇒スポーツの日
-//_/  ・五輪特措法による２０２０年の「祝日移動」
-//_/     海の日：7/20(3rd Mon)⇒7/23, スポーツの日:10/12(2nd Mon)⇒7/24, 山の日：8/11⇒8/10
-//_/
-//_/  下記２つについては未だ法整備自体が行なわれていませんので未対応です。
-//_/  ・２０１９年の退位日(4/30)/即位日(5/1)
-//_/  ・２０１９年の「即位の礼　正殿の儀 (10/22) 」
+//_/    (a) 2019年施行の「天皇誕生日の変更」 12/23⇒2/23 (補：2019年には[天皇誕生日]はありません)
+//_/    (b) 2019年の徳仁親王の即位日(5/1) および
+//_/       祝日に挟まれて「国民の休日」となる 4/30(平成天皇の退位日) ＆ 5/2 の２休日
+//_/    (c) 2019年の「即位の礼 正殿の儀 (10/22) 」
+//_/    (d) 2020年施行の「体育の日の改名」⇒スポーツの日
+//_/    (e) 五輪特措法による2020年の「祝日移動」
+//_/       海の日：7/20(3rd Mon)⇒7/23, スポーツの日:10/12(2nd Mon)⇒7/24, 山の日：8/11⇒8/10
 //_/
 //_/  (*1)このコードを引用するに当たっては、必ずこのコメントも
 //_/      一緒に引用する事とします。
@@ -465,15 +466,15 @@ calc_holiday_name(int year, int month, int day) {
             }
             else if (year == 2020) {
             }
-            else if (year == 2019 && day == 22) {
-                name = SOKUIREISEIDENNOGI;
-            }
             else if (year >= 2000) {
                 if ((day - 1) / 7 == 1) {
                     _weekday = weekday(year, month, day);
                     if (_weekday == 0) {
                         name = TAIKUNOHI;
                     }
+                }
+                else if (year == 2019 && day == 22) {
+                    name = SOKUIREISEIDENNOGI;
                 }
             }
             else if (year >= 1966 && day == 10) {
@@ -617,7 +618,7 @@ static int cjholiday_exec(PyObject *module) {
     PyObject *c_api_object = NULL;
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.2.0")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.3.0")) { goto fail; }
 
     /* initialize _C_API */
     c_api_object = PyCapsule_New(&CAPI, "cjholiday._C_API", NULL);
