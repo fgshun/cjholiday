@@ -63,7 +63,6 @@ def test_args(dates):
         assert holiday_name(date=date) == s
 
 
-@pytest.mark.xfail()
 def test_diff_jholiday(dates):
     """移植元との比較"""
     jholiday = pytest.importorskip('jholiday')
