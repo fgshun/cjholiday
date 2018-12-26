@@ -1,4 +1,3 @@
-#define Py_LIMITED_API 0x03050000
 #include <Python.h>
 #define CJHOLIDAY_MODULE
 #include "cjholiday.h"
@@ -567,17 +566,28 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     return calc_holiday_name(year, month, day);
 }
 
+/*[clinic input]
+module cjholiday
+
+cjholiday.holiday_name
+
+    year as pyyear: object = NULL
+    month as pymonth: object = NULL
+    day as pyday: object = NULL
+    date: object = NULL
+
+get name of holiday from ymd or datetime.date.
+[clinic start generated code]*/
+
 static PyObject *
-holiday_name(PyObject *self, PyObject *args, PyObject *kwargs) {
+cjholiday_holiday_name_impl(PyObject *module, PyObject *pyyear,
+                            PyObject *pymonth, PyObject *pyday,
+                            PyObject *date)
+/*[clinic end generated code: output=f173c876d106f4c9 input=dcdfb93792723ab6]*/
+{
     /* 年月日を表す 3 整数もしくは date の祝日判定 */
     PyObject *result;
-    PyObject *pyyear = NULL, *pymonth = NULL, *pyday = NULL, *date = NULL;
     int year, month, day;
-    static char *kwlist[] = {"year", "month", "day", "date", NULL};
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|OOOO", kwlist, &pyyear, &pymonth, &pyday, &date)) {
-        return NULL;
-    }
 
     if (date != NULL) {
         if (pyyear != NULL || pymonth != NULL || pyday != NULL) {
@@ -602,10 +612,10 @@ holiday_name(PyObject *self, PyObject *args, PyObject *kwargs) {
     return result;
 }
 
+#include "clinic/cjholiday.c.h"
+
 static PyMethodDef cjholiday_method[] = {
-    {"holiday_name", (PyCFunction)holiday_name,
-     METH_VARARGS | METH_KEYWORDS,
-     "get name of holiday from ymd or datetime.date."},
+    CJHOLIDAY_HOLIDAY_NAME_METHODDEF
     {NULL, NULL, 0, NULL}
 };
 
