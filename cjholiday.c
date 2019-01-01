@@ -3,6 +3,7 @@
 #define CJHOLIDAY_MODULE
 #include "cjholiday.h"
 
+
 /*
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 //_/
@@ -558,6 +559,8 @@ CJHoliday_HolidayNameDate(PyObject *date) {
     return calc_holiday_name(year, month, day);
 }
 
+#include "clinic/cjholiday.c.h"
+
 /*[clinic input]
 module cjholiday
 
@@ -603,8 +606,6 @@ cjholiday_holiday_name_impl(PyObject *module, PyObject *pyyear,
 
     return result;
 }
-
-#include "clinic/cjholiday.c.h"
 
 static PyMethodDef cjholiday_method[] = {
     CJHOLIDAY_HOLIDAY_NAME_METHODDEF
