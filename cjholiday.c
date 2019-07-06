@@ -652,36 +652,46 @@ static struct PyModuleDef cjholiday_module = {
     NULL
 };
 
+static PyObject *
+init_holiday_unicode(PyObject **o, const char *s) {
+    if (*o == NULL) {
+        *o = PyUnicode_InternFromString(s);
+    }
+    return *o;
+}
+
 PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (!(PyDateTime_IMPORT)) { return NULL; }
 
     /* 祝日名 */
-    if (GANJITSU == NULL && (GANJITSU = PyUnicode_InternFromString("元日")) == NULL) { goto fail; }
-    if (SEIJINNOHI == NULL && (SEIJINNOHI = PyUnicode_InternFromString("成人の日")) == NULL) { goto fail; }
-    if (KENKOKUKINENNOHI == NULL && (KENKOKUKINENNOHI = PyUnicode_InternFromString("建国記念の日")) == NULL) { goto fail; }
-    if (SHUNBUNNOHI == NULL && (SHUNBUNNOHI = PyUnicode_InternFromString("春分の日")) == NULL) { goto fail; }
-    if (SHOWANOHI == NULL && (SHOWANOHI = PyUnicode_InternFromString("昭和の日")) == NULL) { goto fail; }
-    if (KENPOKINENBI == NULL && (KENPOKINENBI = PyUnicode_InternFromString("憲法記念日")) == NULL) { goto fail; }
-    if (MIDORINOHI == NULL && (MIDORINOHI = PyUnicode_InternFromString("みどりの日")) == NULL) { goto fail; }
-    if (KODOMONOHI == NULL && (KODOMONOHI = PyUnicode_InternFromString("こどもの日")) == NULL) { goto fail; }
-    if (UMINOHI == NULL && (UMINOHI = PyUnicode_InternFromString("海の日")) == NULL) { goto fail; }
-    if (YAMANOHI == NULL && (YAMANOHI = PyUnicode_InternFromString("山の日")) == NULL) { goto fail; }
-    if (KEIRONOHI == NULL && (KEIRONOHI = PyUnicode_InternFromString("敬老の日")) == NULL) { goto fail; }
-    if (SHUBUNNOHI == NULL && (SHUBUNNOHI = PyUnicode_InternFromString("秋分の日")) == NULL) { goto fail; }
-    if (TAIKUNOHI == NULL && (TAIKUNOHI = PyUnicode_InternFromString("体育の日")) == NULL) { goto fail; }
-    if (SUPOTSUNOHI == NULL && (SUPOTSUNOHI = PyUnicode_InternFromString("スポーツの日")) == NULL) { goto fail; }
-    if (BUNKANOHI == NULL && (BUNKANOHI = PyUnicode_InternFromString("文化の日")) == NULL) { goto fail; }
-    if (KINROKANSHANOHI == NULL && (KINROKANSHANOHI = PyUnicode_InternFromString("勤労感謝の日")) == NULL) { goto fail; }
-    if (TENNOTANJOBI == NULL && (TENNOTANJOBI = PyUnicode_InternFromString("天皇誕生日")) == NULL) { goto fail; }
-    if (FURIKAEKYUJITSU == NULL && (FURIKAEKYUJITSU = PyUnicode_InternFromString("振替休日")) == NULL) { goto fail; }
-    if (KOKUMINNOKYUJITSU == NULL && (KOKUMINNOKYUJITSU = PyUnicode_InternFromString("国民の休日")) == NULL) { goto fail; }
-    if (KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI == NULL && (KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI = PyUnicode_InternFromString("皇太子明仁親王の結婚の儀")) == NULL) { goto fail; }
-    if (SHOWATENNOUNOTAIMOUNOREI == NULL && (SHOWATENNOUNOTAIMOUNOREI = PyUnicode_InternFromString("昭和天皇の大喪の礼")) == NULL) { goto fail; }
-    if (SOKUIREISEIDENNOGI == NULL && (SOKUIREISEIDENNOGI = PyUnicode_InternFromString("即位礼正殿の儀")) == NULL) { goto fail; }
-    if (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI == NULL && (KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI = PyUnicode_InternFromString("皇太子徳仁親王の結婚の儀")) == NULL) { goto fail; }
-    if (SOKUINOHI == NULL && (SOKUINOHI = PyUnicode_InternFromString("即位の日")) == NULL) { goto fail; }
+    if (!init_holiday_unicode(&GANJITSU, "元日")) { goto fail; }
+    if (!init_holiday_unicode(&SEIJINNOHI, "成人の日")) { goto fail; }
+    if (!init_holiday_unicode(&KENKOKUKINENNOHI, "建国記念の日")) { goto fail; }
+    if (!init_holiday_unicode(&SHUNBUNNOHI, "春分の日")) { goto fail; }
+    if (!init_holiday_unicode(&SHOWANOHI, "昭和の日")) { goto fail; }
+    if (!init_holiday_unicode(&KENPOKINENBI, "憲法記念日")) { goto fail; }
+    if (!init_holiday_unicode(&MIDORINOHI, "みどりの日")) { goto fail; }
+    if (!init_holiday_unicode(&KODOMONOHI, "こどもの日")) { goto fail; }
+    if (!init_holiday_unicode(&UMINOHI, "海の日")) { goto fail; }
+    if (!init_holiday_unicode(&YAMANOHI, "山の日")) { goto fail; }
+    if (!init_holiday_unicode(&KEIRONOHI, "敬老の日")) { goto fail; }
+    if (!init_holiday_unicode(&SHUBUNNOHI, "秋分の日")) { goto fail; }
+    if (!init_holiday_unicode(&TAIKUNOHI, "体育の日")) { goto fail; }
+    if (!init_holiday_unicode(&SUPOTSUNOHI, "スポーツの日")) { goto fail; }
+    if (!init_holiday_unicode(&BUNKANOHI, "文化の日")) { goto fail; }
+    if (!init_holiday_unicode(&KINROKANSHANOHI, "勤労感謝の日")) { goto fail; }
+    if (!init_holiday_unicode(&TENNOTANJOBI, "天皇誕生日")) { goto fail; }
+    if (!init_holiday_unicode(&FURIKAEKYUJITSU, "振替休日")) { goto fail; }
+    if (!init_holiday_unicode(&KOKUMINNOKYUJITSU, "国民の休日")) { goto fail; }
+    if (!init_holiday_unicode(&KOUTAISHIAKIHITOSHINNOUNOKEKKONNOGI, "皇太子明仁親王の結婚の儀")) { goto fail; }
+    if (!init_holiday_unicode(&SHOWATENNOUNOTAIMOUNOREI, "昭和天皇の大喪の礼")) { goto fail; }
+    if (!init_holiday_unicode(&SOKUIREISEIDENNOGI, "即位礼正殿の儀")) { goto fail; }
+    if (!init_holiday_unicode(&KOUTAISHINARUHITOSHINNOUNOKEKKONNOGI, "皇太子徳仁親王の結婚の儀")) { goto fail; }
+    if (!init_holiday_unicode(&SOKUINOHI, "即位の日")) { goto fail; }
 
-    return PyModuleDef_Init(&cjholiday_module);
+    PyObject *module = PyModuleDef_Init(&cjholiday_module);
+    if (module == NULL) { goto fail; }
+    return module;
 
 fail:
     Py_CLEAR(GANJITSU);
