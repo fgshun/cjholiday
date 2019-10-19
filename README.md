@@ -21,6 +21,8 @@ pip install git+https://github.com/fgshun/cjholiday#egg=cjholiday
 
 ### Install on Windows
 ```
+# Python 3.8
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholiday-1.3.0-cp38-cp38-win_amd64.whl
 # Python 3.7
 pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholiday-1.3.0-cp37-cp37m-win_amd64.whl
 # Python 3.6
@@ -28,7 +30,7 @@ pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholid
 ```
 
 ### Building on Windows
-Python 3.6 もしくは 3.7 と Visual Studio 2017 を用意してください。
+Python 3.6, 3.7 もしくは 3.8 と Visual Studio 2017 を用意してください。
 また、 環境変数 `CL` に `/utf-8` を設定しておいてください。
 
 ## C API
