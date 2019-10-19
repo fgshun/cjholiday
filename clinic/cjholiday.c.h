@@ -3,7 +3,9 @@ preserve
 [clinic start generated code]*/
 
 PyDoc_STRVAR(cjholiday_holiday_name__doc__,
-"holiday_name($module, /, year=None, month=None, day=None, date=None)\n"
+"holiday_name($module, /, year=<unrepresentable>,\n"
+"             month=<unrepresentable>, day=<unrepresentable>,\n"
+"             date=<unrepresentable>)\n"
 "--\n"
 "\n"
 "get name of holiday from ymd or datetime.date.");
@@ -61,4 +63,4 @@ skip_optional_pos:
 exit:
     return return_value;
 }
-/*[clinic end generated code: output=62bb20428d160d9c input=a9049054013a1b77]*/
+/*[clinic end generated code: output=4719c9686b572051 input=a9049054013a1b77]*/
