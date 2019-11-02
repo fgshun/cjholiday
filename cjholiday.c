@@ -72,7 +72,7 @@ static PyObject *SHUBUNNOHI;
 /* 体育の日 */
 static PyObject *TAIKUNOHI;
 /* スポーツの日 */
-static PyObject *SUPOTSUNOHI;
+static PyObject *SPORTS_NOHI;
 /* 文化の日 */
 static PyObject *BUNKANOHI;
 /* 勤労感謝の日 */
@@ -407,7 +407,7 @@ calc_holiday_name(int year, int month, int day) {
                     name = UMINOHI;
                 }
                 else if (day == 24) {
-                    name = SUPOTSUNOHI;
+                    name = SPORTS_NOHI;
                 }
             }
             else if (year >= 2003) {
@@ -460,7 +460,7 @@ calc_holiday_name(int year, int month, int day) {
                 if ((day - 1) / 7 == 1) {
                     _weekday = weekday(year, month, day);
                     if (_weekday == 0) {
-                        name = SUPOTSUNOHI;
+                        name = SPORTS_NOHI;
                     }
                 }
             }
@@ -672,7 +672,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (!init_holiday_unicode(&KEIRONOHI, "敬老の日")) { goto fail; }
     if (!init_holiday_unicode(&SHUBUNNOHI, "秋分の日")) { goto fail; }
     if (!init_holiday_unicode(&TAIKUNOHI, "体育の日")) { goto fail; }
-    if (!init_holiday_unicode(&SUPOTSUNOHI, "スポーツの日")) { goto fail; }
+    if (!init_holiday_unicode(&SPORTS_NOHI, "スポーツの日")) { goto fail; }
     if (!init_holiday_unicode(&BUNKANOHI, "文化の日")) { goto fail; }
     if (!init_holiday_unicode(&KINROKANSHANOHI, "勤労感謝の日")) { goto fail; }
     if (!init_holiday_unicode(&TENNOTANJOBI, "天皇誕生日")) { goto fail; }
@@ -702,7 +702,7 @@ fail:
     Py_CLEAR(KEIRONOHI);
     Py_CLEAR(SHUBUNNOHI);
     Py_CLEAR(TAIKUNOHI);
-    Py_CLEAR(SUPOTSUNOHI);
+    Py_CLEAR(SPORTS_NOHI);
     Py_CLEAR(BUNKANOHI);
     Py_CLEAR(KINROKANSHANOHI);
     Py_CLEAR(TENNOTANJOBI);
