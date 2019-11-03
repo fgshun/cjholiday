@@ -73,7 +73,7 @@ static PyObject *SHUBUNNOHI;
 /* 体育の日 */
 static PyObject *TAIKUNOHI;
 /* スポーツの日 */
-static PyObject *SUPOTSUNOHI;
+static PyObject *SPORTS_NOHI;
 /* 文化の日 */
 static PyObject *BUNKANOHI;
 /* 勤労感謝の日 */
@@ -408,7 +408,7 @@ calc_holiday_name(int year, int month, int day) {
                     name = UMINOHI;
                 }
                 else if (day == 24) {
-                    name = SUPOTSUNOHI;
+                    name = SPORTS_NOHI;
                 }
             }
             else if (year >= 2003) {
@@ -461,7 +461,7 @@ calc_holiday_name(int year, int month, int day) {
                 if ((day - 1) / 7 == 1) {
                     _weekday = weekday(year, month, day);
                     if (_weekday == 0) {
-                        name = SUPOTSUNOHI;
+                        name = SPORTS_NOHI;
                     }
                 }
             }
@@ -621,10 +621,10 @@ static int cjholiday_exec(PyObject *module) {
     PyObject *c_api_object = NULL;
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.3.1")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.4.0")) { goto fail; }
 
     /* initialize _C_API */
-    c_api_object = PyCapsule_New(&CAPI, "cjholiday._C_API", NULL);
+    c_api_object = PyCapsule_New(&CAPI, "cjholiday._cjholiday._C_API", NULL);
     if (c_api_object == NULL) { goto fail; }
     if (PyModule_AddObject(module, "_C_API", c_api_object) == -1) { goto fail; }
 
@@ -642,7 +642,7 @@ static PyModuleDef_Slot cjholiday_slots[] = {
 
 static struct PyModuleDef cjholiday_module = {
     PyModuleDef_HEAD_INIT,
-    "cjholiday",
+    "cjholiday._cjholiday",
     NULL,
     0,
     cjholiday_method,
@@ -660,7 +660,7 @@ init_holiday_unicode(PyObject **o, const char *s) {
     return *o;
 }
 
-PyMODINIT_FUNC PyInit_cjholiday(void) {
+PyMODINIT_FUNC PyInit__cjholiday(void) {
     if (!(PyDateTime_IMPORT)) { return NULL; }
 
     /* 祝日名 */
@@ -677,7 +677,7 @@ PyMODINIT_FUNC PyInit_cjholiday(void) {
     if (!init_holiday_unicode(&KEIRONOHI, "敬老の日")) { goto fail; }
     if (!init_holiday_unicode(&SHUBUNNOHI, "秋分の日")) { goto fail; }
     if (!init_holiday_unicode(&TAIKUNOHI, "体育の日")) { goto fail; }
-    if (!init_holiday_unicode(&SUPOTSUNOHI, "スポーツの日")) { goto fail; }
+    if (!init_holiday_unicode(&SPORTS_NOHI, "スポーツの日")) { goto fail; }
     if (!init_holiday_unicode(&BUNKANOHI, "文化の日")) { goto fail; }
     if (!init_holiday_unicode(&KINROKANSHANOHI, "勤労感謝の日")) { goto fail; }
     if (!init_holiday_unicode(&TENNOTANJOBI, "天皇誕生日")) { goto fail; }
@@ -707,7 +707,7 @@ fail:
     Py_CLEAR(KEIRONOHI);
     Py_CLEAR(SHUBUNNOHI);
     Py_CLEAR(TAIKUNOHI);
-    Py_CLEAR(SUPOTSUNOHI);
+    Py_CLEAR(SPORTS_NOHI);
     Py_CLEAR(BUNKANOHI);
     Py_CLEAR(KINROKANSHANOHI);
     Py_CLEAR(TENNOTANJOBI);
