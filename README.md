@@ -1,6 +1,6 @@
 # 祝日判定
 [AddinBox](http://addinbox.sakura.ne.jp/holiday_logic.htm) のコードを Python C 拡張として書き直したものです。
-Python 3.5 以降でのビルド、動作確認ができています。
+Python 3.6 以降でのビルド、動作確認ができています。
 
 ```
 >>> import cjholiday
@@ -22,11 +22,11 @@ pip install git+https://github.com/fgshun/cjholiday#egg=cjholiday
 ### Install on Windows
 ```
 # Python 3.8
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholiday-1.3.0-cp38-cp38-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholiday-1.4.0-cp38-cp38-win_amd64.whl
 # Python 3.7
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholiday-1.3.0-cp37-cp37m-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholiday-1.4.0-cp37-cp37m-win_amd64.whl
 # Python 3.6
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.3.0/cjholiday-1.3.0-cp36-cp36m-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholiday-1.4.0-cp36-cp36m-win_amd64.whl
 ```
 
 ### Building on Windows
