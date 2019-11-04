@@ -621,7 +621,7 @@ static int cjholiday_exec(PyObject *module) {
     if (PyModule_AddStringConstant(module, "version", "1.4.0")) { goto fail; }
 
     /* initialize _C_API */
-    c_api_object = PyCapsule_New(&CAPI, "cjholiday._cjholiday._C_API", NULL);
+    c_api_object = PyCapsule_New(&CAPI, "cjholiday.cjholiday._C_API", NULL);
     if (c_api_object == NULL) { goto fail; }
     if (PyModule_AddObject(module, "_C_API", c_api_object) == -1) { goto fail; }
 
@@ -639,7 +639,7 @@ static PyModuleDef_Slot cjholiday_slots[] = {
 
 static struct PyModuleDef cjholiday_module = {
     PyModuleDef_HEAD_INIT,
-    "cjholiday._cjholiday",
+    "cjholiday.cjholiday",
     NULL,
     0,
     cjholiday_method,
@@ -657,7 +657,7 @@ init_holiday_unicode(PyObject **o, const char *s) {
     return *o;
 }
 
-PyMODINIT_FUNC PyInit__cjholiday(void) {
+PyMODINIT_FUNC PyInit_cjholiday(void) {
     /* 祝日名 */
     if (!init_holiday_unicode(&GANJITSU, "元日")) { goto fail; }
     if (!init_holiday_unicode(&SEIJINNOHI, "成人の日")) { goto fail; }
