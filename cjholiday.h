@@ -20,7 +20,7 @@ static CJHoliday_CAPI *CJHoliday_API;
 #define CJHoliday_HolidayName(year, month, day) CJHoliday_API->HolidayName(year, month, day);
 #define CJHoliday_HolidayNameDate(date) CJHoliday_API->HolidayNameDate(date);
 
-#define CJHoliday_IMPORT CJHoliday_API = (CJHoliday_CAPI*)PyCapsule_Import("cjholiday._cjholiday._C_API", 0)
+#define CJHoliday_IMPORT CJHoliday_API = (CJHoliday_CAPI*)PyCapsule_Import("cjholiday.cjholiday._C_API", 0)
 
 #endif
 
