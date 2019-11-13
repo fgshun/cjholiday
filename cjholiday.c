@@ -1,4 +1,5 @@
 #define Py_LIMITED_API 0x03060000
+#define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #define CJHOLIDAY_MODULE
 #include "cjholiday.h"
