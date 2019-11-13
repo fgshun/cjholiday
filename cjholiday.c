@@ -640,14 +640,10 @@ static PyModuleDef_Slot cjholiday_slots[] = {
 
 static struct PyModuleDef cjholiday_module = {
     PyModuleDef_HEAD_INIT,
-    "cjholiday.cjholiday",
-    NULL,
-    0,
-    cjholiday_method,
-    cjholiday_slots,
-    NULL,
-    NULL,
-    NULL
+    .m_size = 0,
+    .m_name = "cjholiday.cjholiday",
+    .m_methods = cjholiday_method,
+    .m_slots = cjholiday_slots
 };
 
 static PyObject *
