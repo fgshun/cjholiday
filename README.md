@@ -16,7 +16,7 @@ Python 3.6 以降でのビルド、動作確認ができています。
 
 ## Install
 ```
-pip install git+https://github.com/fgshun/cjholiday
+pip install git+https://github.com/fgshun/cjholiday@v1.4.0
 ```
 
 ### Install on Windows
