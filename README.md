@@ -32,7 +32,7 @@ pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholid
 ```
 
 ### Building on Windows
-Python 3.6, 3.7 もしくは 3.8 と Visual Studio 2017 を用意してください。
+Python 3.6, 3.7, 3.8 もしくは 3.9 と Visual Studio 2017 を用意してください。
 また、 環境変数 `CL` に `/utf-8` を設定しておいてください。
 
 ## C API
