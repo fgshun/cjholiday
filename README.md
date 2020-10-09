@@ -21,6 +21,8 @@ pip install git+https://github.com/fgshun/cjholiday.git@v1.4.0#egg=cjholiday
 
 ### Install on Windows
 ```
+# Python 3.9
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholiday-1.4.0-cp39-cp39-win_amd64.whl
 # Python 3.8
 pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.0/cjholiday-1.4.0-cp38-cp38-win_amd64.whl
 # Python 3.7
