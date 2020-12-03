@@ -634,7 +634,7 @@ static int cjholiday_exec(PyObject *module) {
     PyObject *c_api_object = NULL;
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.4.1")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.4.2")) { goto fail; }
 
     /* initialize _C_API */
     c_api_object = PyCapsule_New(&CAPI, "cjholiday.cjholiday._C_API", NULL);
