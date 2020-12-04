@@ -5,12 +5,12 @@ Python 3.6 以降でのビルド、動作確認ができています。
 ```
 >>> import cjholiday
 
->>> cjholiday.holiday_name(2020, 7, 24)
+>>> cjholiday.holiday_name(2021, 7, 23)
 'スポーツの日'
 
 >>> import datetime
 
->>> cjholiday.holiday_name(date=datetime.date(2020, 7, 24))
+>>> cjholiday.holiday_name(date=datetime.date(2021, 7, 23))
 'スポーツの日'
 ```
 
