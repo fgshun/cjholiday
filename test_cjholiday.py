@@ -263,7 +263,7 @@ def test_uminohi(years):
     for year in years:
         m3 = fetch_nth_monday(year, 7, n=3)
 
-        table = {20: f, 23: f}
+        table = {20: f, 22: f, 23: f}
         if year < 1996:
             table[m3.day] = f
         elif year < 2003:
@@ -277,6 +277,10 @@ def test_uminohi(years):
             # 2020年だけ7月23日
             table[m3.day] = f
             table[23] = t
+        elif year == 2021:
+            # 2021年も例外に、7月22日
+            table[m3.day] = f
+            table[22] = t
         else:
             table[m3.day] = t
 
@@ -293,18 +297,22 @@ def test_yamanohi(years):
 
     for year in years:
         if year < 2016:
-            p0811, p0810 = f, f
+            p0811, p0810, p0808 = f, f, f
         elif year < 2020:
             # 平成28年(2016年)から存在、8月11日
-            p0811, p0810 = t, f
+            p0811, p0810, p0808 = t, f, f
         elif year == 2020:
             # 2020年だけ8月10日
-            p0811, p0810 = f, t
+            p0811, p0810, p0808 = f, t, f
+        elif year == 2021:
+            # 2021年も例外に、8月8日
+            p0811, p0810, p0808 = f, f, t
         else:
-            p0811, p0810 = t, f
+            p0811, p0810, p0808 = t, f, f
 
         assert p0811(holiday_name(year, 8, 11))
         assert p0810(holiday_name(year, 8, 10))
+        assert p0808(holiday_name(year, 8, 8))
 
 
 def test_keironohi(years):
@@ -436,14 +444,18 @@ def test_supotsunohi(years):
 
     for year in years:
         if year < 2020:
-            p0724, p10m2 = f, f
+            p0723, p0724, p10m2 = f, f, f
         elif year == 2020:
             # 2020年から存在、この年だけ7月24日
-            p0724, p10m2 = t, f
+            p0723, p0724, p10m2 = f, t, f
+        elif year == 2021:
+            # 2021年も例外に、7月24日
+            p0723, p0724, p10m2 = t, f, f
         else:
             # 2021年から10月第2月曜
-            p0724, p10m2 = f, t
+            p0723, p0724, p10m2 = f, f, t
 
         m2 = fetch_nth_monday(year, 10, n=2)
+        assert p0723(holiday_name(year, 7, 23))
         assert p0724(holiday_name(year, 7, 24))
         assert p10m2(holiday_name(date=m2))
