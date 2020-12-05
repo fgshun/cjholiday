@@ -8,7 +8,7 @@
 /*
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 //_/
-//_/  --- Python 移植版 ( Update: 2018/12/8 ) ---
+//_/  --- Python 移植版 ( Update: 2020/11/28 ) ---
 //_/
 //_/  CopyRight(C) K.Tsunoda(AddinBox) 2001 All Rights Reserved.
 //_/  ( AddinBox  http://addinbox.sakura.ne.jp/index.htm )
@@ -26,6 +26,8 @@
 //_/    (d) 2020年施行の「体育の日の改名」⇒スポーツの日
 //_/    (e) 五輪特措法による2020年の「祝日移動」
 //_/       海の日：7/20(3rd Mon)⇒7/23, スポーツの日:10/12(2nd Mon)⇒7/24, 山の日：8/11⇒8/10
+//_/    (f) 五輪特措法による2021年の「祝日移動」
+//_/       海の日：7/19(3rd Mon)⇒7/22, スポーツの日:10/11(2nd Mon)⇒7/23, 山の日：8/11⇒8/8
 //_/
 //_/  (*1)このコードを引用するに当たっては、必ずこのコメントも
 //_/      一緒に引用する事とします。
@@ -34,7 +36,7 @@
 //_/      へのリンクによる紹介で対応して下さい。
 //_/  (*3)[ktHolidayName]という関数名そのものは、各自の環境に
 //_/      おける命名規則に沿って変更しても構いません。
-//_/
+//_/ 
 //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 */
 
@@ -396,12 +398,20 @@ calc_holiday_name(int year, int month, int day) {
             }
             break;
         case 7:
-            if (year >= 2021) {
+            if (year >= 2022) {
                 if ((day - 1) / 7 == 2) {
                     _weekday = weekday(year, month, day);
                     if (_weekday == 0) {
                         name = UMINOHI;
                     }
+                }
+            }
+            else if (year == 2021) {
+                if (day == 22) {
+                    name = UMINOHI;
+                }
+                else if (day == 23) {
+                    name = SPORTS_NOHI;
                 }
             }
             else if (year == 2020) {
@@ -425,8 +435,13 @@ calc_holiday_name(int year, int month, int day) {
             }
             break;
         case 8:
-            if (year >= 2021 && day == 11) {
+            if (year >= 2022 && day == 11) {
                 name = YAMANOHI;
+            }
+            else if (year == 2021) {
+                if (day == 8) {
+                    name = YAMANOHI;
+                }
             }
             else if (year == 2020) {
                 if (day == 10) {
@@ -458,7 +473,7 @@ calc_holiday_name(int year, int month, int day) {
             }
             break;
         case 10:
-            if (year >= 2021) {
+            if (year >= 2022) {
                 if ((day - 1) / 7 == 1) {
                     _weekday = weekday(year, month, day);
                     if (_weekday == 0) {
@@ -466,7 +481,7 @@ calc_holiday_name(int year, int month, int day) {
                     }
                 }
             }
-            else if (year == 2020) {
+            else if (year == 2020 || year == 2021) {
             }
             else if (year >= 2000) {
                 if ((day - 1) / 7 == 1) {
@@ -622,7 +637,7 @@ static int cjholiday_exec(PyObject *module) {
     PyObject *c_api_object = NULL;
 
     /* version */
-    if (PyModule_AddStringConstant(module, "version", "1.4.0")) { goto fail; }
+    if (PyModule_AddStringConstant(module, "version", "1.4.2")) { goto fail; }
 
     /* initialize _C_API */
     c_api_object = PyCapsule_New(&CAPI, "cjholiday.cjholiday._C_API", NULL);
