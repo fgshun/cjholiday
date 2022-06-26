@@ -11,7 +11,7 @@ PyDoc_STRVAR(cjholiday_holiday_name__doc__,
 "get name of holiday from ymd or datetime.date.");
 
 #define CJHOLIDAY_HOLIDAY_NAME_METHODDEF    \
-    {"holiday_name", (PyCFunction)(void(*)(void))cjholiday_holiday_name, METH_FASTCALL|METH_KEYWORDS, cjholiday_holiday_name__doc__},
+    {"holiday_name", _PyCFunction_CAST(cjholiday_holiday_name), METH_FASTCALL|METH_KEYWORDS, cjholiday_holiday_name__doc__},
 
 static PyObject *
 cjholiday_holiday_name_impl(PyObject *module, PyObject *pyyear,
@@ -63,4 +63,4 @@ skip_optional_pos:
 exit:
     return return_value;
 }
-/*[clinic end generated code: output=4719c9686b572051 input=a9049054013a1b77]*/
+/*[clinic end generated code: output=76a7c6d42cfc64fd input=a9049054013a1b77]*/
