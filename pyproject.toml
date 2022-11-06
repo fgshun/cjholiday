@@ -1,0 +1,25 @@
+[project]
+name = "cjholiday"
+version = "1.4.3"
+authors = [
+  { name="fgshun", email="fgshun@gmail.com" },
+]
+description = "日本の祝日判定"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Private :: Do Not Upload",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/fgshun/cjholiday"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cjholiday"]
+
+[tool.setuptools.package-data]
+qreki = ["py.typed", "*.pyi"]
