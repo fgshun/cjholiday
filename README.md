@@ -16,27 +16,25 @@ Python 3.6 以降でのビルド、動作確認ができています。
 
 ## Install
 ```
-pip install git+https://github.com/fgshun/cjholiday.git@v1.4.2#egg=cjholiday
+pip install git+https://github.com/fgshun/cjholiday.git@v1.4.3#egg=cjholiday
 ```
 
 ### Install on Windows
 ```
 # Python 3.11
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp311-cp311-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.3/cjholiday-1.4.3-cp311-cp311-win_amd64.whl
 # Python 3.10
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp310-cp310-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.3/cjholiday-1.4.3-cp310-cp310-win_amd64.whl
 # Python 3.9
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp39-cp39-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.3/cjholiday-1.4.3-cp39-cp39-win_amd64.whl
 # Python 3.8
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp38-cp38-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.3/cjholiday-1.4.3-cp38-cp38-win_amd64.whl
 # Python 3.7
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp37-cp37m-win_amd64.whl
-# Python 3.6
-pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.2/cjholiday-1.4.2-cp36-cp36m-win_amd64.whl
+pip install https://github.com/fgshun/cjholiday/releases/download/v1.4.3/cjholiday-1.4.3-cp37-cp37m-win_amd64.whl
 ```
 
 ### Building on Windows
-Python 3.6, 3.7, 3.8, 3.9 3.10 もしくは 3.11 と Visual Studio 2017 を用意してください。
+Python 3.7, 3.8, 3.9 3.10 もしくは 3.11 と Visual Studio 2017 を用意してください。
 また、 環境変数 `CL` に `/utf-8` を設定しておいてください。
 
 ## C API
