@@ -1,6 +1,6 @@
 # 日本の祝日判定
 [AddinBox](http://addinbox.sakura.ne.jp/holiday_logic.htm) のコードを Python C 拡張として書き直したものです。
-Python 3.6 以降でのビルド、動作確認ができています。
+Python 3.7 以降でのビルド、動作確認ができています。
 
 ```
 >>> import cjholiday
