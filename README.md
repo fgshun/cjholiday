@@ -39,7 +39,7 @@ Python 3.7, 3.8, 3.9 3.10 もしくは 3.11 と Visual Studio 2017 を用意し�
 
 ## C API
 Python C 拡張からの直接の使用ができます。
-そのためには `cjholiday.h` を include してモジュール初期化時に `CJHoliday_IMPORT` マクロを起動しておいてください。
+そのためには `cjholiday/cjholiday.h` を include してモジュール初期化時に `CJHoliday_IMPORT` マクロを起動しておいてください。
 
     PyMODINIT_FUNC
     PyInit_usecjholiday(void)
